@@ -58,25 +58,31 @@
         }
         /* Navbar Sabitleme Stili */
         .navbar {
-            position: fixed; /* Sabit konum */
-            top: 0; /* Üstten sıfır mesafe */
-            left: 0; /* Soldan sıfır mesafe */
-            width: 100%; /* Tam genişlik */
-            z-index: 1000; /* İçeriğin üzerinde olmasını sağlar */
-            padding: 0.25rem 0.5rem; /* İç ve dış boşlukları daha da azaltır */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 0.25rem 0.5rem;
+            background-color: rgba(255, 255, 255, 0.8); /* Beyaz arka plan, %80 opaklık */
+            box-shadow: none; /* Gölge yok */
+            backdrop-filter: blur(10px); /* Arka planı bulanıklaştırarak daha belirgin saydamlık etkisi sağlar */
         }
 
-        .navbar-brand {
-            padding: 0.125rem 0.25rem; /* İç boşlukları daha da azaltır */
-        }
 
-        .navbar-nav .nav-link {
-            padding: 0.125rem 0.25rem; /* İç boşlukları daha da azaltır */
-        }
-
+        /* Navbar içindeki diğer elemanlar için stil ayarları */
+        .navbar-brand,
+        .navbar-nav .nav-link,
         .navbar-toggler {
-            padding: 0.125rem 0.25rem; /* İç boşlukları daha da azaltır */
+            padding: 0.125rem 0.25rem; /* İç boşlukları azaltır */
+            color: #333; /* Metin rengini koyu gri yapar */
         }
+
+            /* Navbar linklerinin üzerine geldiğinde renk değişimi */
+            .navbar-nav .nav-link:hover {
+                color: #000; /* Renk değişimi */
+            }
+
 
         .openbtn {
             position: absolute; /* Mutlak konum */
