@@ -1,0 +1,49 @@
+﻿/* QualityClass renkleri */
+.quality-class-viscose {
+    background-color: rgba(255, 165, 0, 0.5); /* orange */
+}
+
+.quality-class-rayon {
+    background-color: rgba(0, 128, 0, 0.5); /* green */
+}
+
+.quality-class-cotton {
+    background-color: rgba(128, 0, 128, 0.5); /* purple */
+}
+
+.quality-class-nylon {
+    background-color: rgba(255, 255, 0, 0.5); /* yellow */
+}
+
+.quality-class-polyester {
+    background-color: rgba(255, 0, 0, 0.5); /* red */
+}
+
+.quality-class-tencel {
+    background-color: rgba(0, 0, 255, 0.5); /* blue */
+}
+
+.quality-class-linen {
+    background-color: rgba(173, 216, 230, 0.5); /* lightblue */
+}
+
+.quality-class-jacquard {
+    background-color: rgba(128, 128, 128, 0.5); /* gray */
+}
+
+.quality-class-mix {
+    background-color: rgba(211, 211, 211, 0.5); /* lightgray */
+}
+
+/* Qualities renkleri */
+.qualities-m {
+    background-color: rgba(173, 216, 230, 0.25); /*main*/
+}
+
+.qualities-a {
+    background-color: rgba(255, 255, 224, 0.25); /*arhive*/
+}
+
+.qualities-n {
+    background-color: rgba(144, 238, 144, 0.25); /*new*/
+}
