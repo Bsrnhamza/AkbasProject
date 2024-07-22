@@ -10,195 +10,232 @@
     <style>
         /* Genel Stil Ayarları */
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            overflow-x: hidden; /* Yan kaydırmayı engeller */
+            margin: 0; /* Sayfanın kenar boşluklarını kaldırır */
+            font-family: Arial, sans-serif; /* Yazı tipi ayarı */
+            overflow-x: hidden; /* Yatay kaydırmayı engeller */
+            padding-top: 60px; /* Navbar yüksekliği kadar boşluk ekle */
         }
 
         .container {
-            padding: 15px;
+            padding: 15px; /* Konteyner içindeki boşluk */
         }
 
         /* Off-canvas Menüsü Stilleri */
         .offcanvas {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            top: 0;
-            right: 0; /* Sağdan açılmasını sağlar */
-            background-color: #f8f9fa; /* Açık gri renk */
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-            z-index: 1000; /* Diğer içeriklerin üstünde olması için */
+            height: 100%; /* Tam yükseklik */
+            width: 0; /* Başlangıç genişliği */
+            position: fixed; /* Sabit konum */
+            top: 0; /* Üst kenardan sıfır mesafe */
+            right: 0; /* Sağ kenardan sıfır mesafe */
+            background-color: #f8f9fa; /* Açık gri arka plan */
+            overflow-x: hidden; /* Yatay kaydırmayı engeller */
+            transition: 0.5s; /* Geçiş süresi */
+            padding-top: 60px; /* Yukarıdan boşluk */
+            z-index: 1000; /* Menü önceliği */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Gölgeli arka plan */
         }
 
             .offcanvas a {
-                padding: 15px 20px; /* Daha geniş aralık */
-                text-decoration: none;
-                font-size: 24px; /* Daha büyük yazı boyutu */
-                color: #333; /* Koyu gri renk */
-                display: block;
-                transition: 0.3s;
+                padding: 15px 20px; /* Bağlantılar için iç boşluk */
+                text-decoration: none; /* Alt çizgiyi kaldırır */
+                font-size: 24px; /* Büyük yazı boyutu */
+                color: #333; /* Koyu gri yazı rengi */
+                display: block; /* Blok seviyesinde eleman */
+                transition: 0.3s; /* Geçiş süresi */
             }
 
                 .offcanvas a:hover {
-                    background-color: #e9ecef; /* Açık gri renk */
+                    background-color: #e9ecef; /* Hover efekti */
                 }
 
         .offcanvas-close {
-            position: absolute;
-            top: 10px; /* Yukarıdan küçük boşluk */
-            right: 10px; /* Sağdan küçük boşluk */
-            font-size: 30px; /* Daha küçük kapanma simgesi */
+            position: absolute; /* Mutlak konum */
+            top: 10px; /* Üstten 10px mesafe */
+            right: 10px; /* Sağdan 10px mesafe */
+            font-size: 30px; /* Büyüklükte simge */
             color: #333; /* Koyu gri renk */
             z-index: 1100; /* Menüden üstte olması için */
         }
+        /* Navbar Sabitleme Stili */
+        .navbar {
+            position: fixed; /* Sabit konum */
+            top: 0; /* Üstten sıfır mesafe */
+            left: 0; /* Soldan sıfır mesafe */
+            width: 100%; /* Tam genişlik */
+            z-index: 1000; /* İçeriğin üzerinde olmasını sağlar */
+            padding: 0.25rem 0.5rem; /* İç ve dış boşlukları daha da azaltır */
+        }
+
+        .navbar-brand {
+            padding: 0.125rem 0.25rem; /* İç boşlukları daha da azaltır */
+        }
+
+        .navbar-nav .nav-link {
+            padding: 0.125rem 0.25rem; /* İç boşlukları daha da azaltır */
+        }
+
+        .navbar-toggler {
+            padding: 0.125rem 0.25rem; /* İç boşlukları daha da azaltır */
+        }
 
         .openbtn {
-            font-size: 18px; /* Daha küçük menü açma butonu */
-            cursor: pointer;
+            position: absolute; /* Mutlak konum */
+            right: 20px; /* Sağ kenardan 10px mesafe */
         }
 
-            .openbtn:hover {
-                background-color: #ddd;
-            }
-
+        /* Ana İçerik Stilleri */
         .main-content {
-            transition: margin-right .5s; /* Sağ kenar boşluğu için */
-            padding: 16px;
+            transition: margin-right .5s; /* Sağ kenar boşluğu için geçiş */
+            padding: 16px; /* İç boşluk */
         }
 
-        /* QualityClass renkleri */
+        /* Kalite Sınıfları Renkleri */
         .quality-class-viscose {
-            background-color: rgba(255, 165, 0, 0.5); /* orange */
+            background-color: rgba(255, 165, 0, 0.5);
         }
-
+        /* Viskon - turuncu */
         .quality-class-rayon {
-            background-color: rgba(0, 128, 0, 0.5); /* green */
+            background-color: rgba(0, 128, 0, 0.5);
         }
-
+        /* Rayon - yeşil */
         .quality-class-rynsignart {
-            background-color: rgba(0, 128, 0, 0.5); /* green */
+            background-color: rgba(0, 128, 0, 0.5);
         }
-
+        /* Rynsignart - yeşil */
         .quality-class-cotton {
-            background-color: rgba(128, 0, 128, 0.5); /* purple */
+            background-color: rgba(128, 0, 128, 0.5);
         }
-
+        /* Pamuk - mor */
         .quality-class-nylon {
-            background-color: rgba(255, 255, 0, 0.5); /* yellow */
+            background-color: rgba(255, 255, 0, 0.5);
         }
-
+        /* Naylon - sarı */
         .quality-class-polyester {
-            background-color: rgba(255, 0, 0, 0.5); /* red */
+            background-color: rgba(255, 0, 0, 0.5);
         }
-
+        /* Polyester - kırmızı */
         .quality-class-pesdouble {
-            background-color: rgba(255, 0, 0, 0.5); /* red */
+            background-color: rgba(255, 0, 0, 0.5);
         }
-
+        /* PES Double - kırmızı */
         .quality-class-tencel {
-            background-color: rgba(0, 0, 255, 0.5); /* blue */
+            background-color: rgba(0, 0, 255, 0.5);
         }
-
+        /* Tencel - mavi */
         .quality-class-modal {
-            background-color: rgba(0, 0, 255, 0.5); /* blue */
+            background-color: rgba(0, 0, 255, 0.5);
         }
-
+        /* Modal - mavi */
         .quality-class-linen {
-            background-color: rgba(173, 216, 230, 0.5); /* lightblue */
+            background-color: rgba(173, 216, 230, 0.5);
         }
-
+        /* Keten - açık mavi */
         .quality-class-jacquard {
-            background-color: rgba(128, 128, 128, 0.5); /* gray */
+            background-color: rgba(128, 128, 128, 0.5);
         }
-
+        /* Jakar - gri */
         .quality-class-mix {
-            background-color: rgba(211, 211, 211, 0.5); /* lightgray */
+            background-color: rgba(211, 211, 211, 0.5);
         }
-
+        /* Karışım - açık gri */
         .quality-class-yarndyed {
-            background-color: rgba(211, 211, 211, 0.5); /* lightgray */
+            background-color: rgba(211, 211, 211, 0.5);
         }
+        /* Yarı boyalı - açık gri */
 
-        /* Qualities renkleri */
+        /* Kalite Sınıfları Renkleri */
         .qualities-m {
-            background-color: rgba(173, 216, 230, 0.25); /* main */
+            background-color: rgba(173, 216, 230, 0.25);
         }
-
+        /* Ana - açık mavi */
         .qualities-a {
-            background-color: rgba(255, 255, 224, 0.25); /* archive */
+            background-color: rgba(255, 255, 224, 0.25);
         }
-
+        /* Arşiv - açık sarı */
         .qualities-n {
-            background-color: rgba(144, 238, 144, 0.25); /* new */
+            background-color: rgba(144, 238, 144, 0.25);
         }
+        /* Yeni - açık yeşil */
 
-        /* Airflow ve Sustainable renkleri */
+        /* Airflow ve Sustainable Filtre Renkleri */
         .airflow-filter, .sustainable-filter {
             background-color: rgba(144, 238, 144, 0.5); /* Açık yeşil */
         }
 
+        /* Kalite Grupları */
         .quality-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px; /* Optional: space between items */
+            display: flex; /* Flexbox düzeni */
+            flex-wrap: wrap; /* Satıra sarmayı sağlar */
+            gap: 10px; /* Elemanlar arası boşluk */
         }
 
             .quality-group ul {
-                flex: 1; /* Equal width for all columns */
-                box-sizing: border-box;
-                list-style: none;
-                padding: 0;
-                margin: 0;
+                flex: 1; /* Eşit genişlik */
+                box-sizing: border-box; /* Padding ve border'ı boyutlara dahil eder */
+                list-style: none; /* Liste işaretlerini kaldırır */
+                padding: 0; /* Padding yok */
+                margin: 0; /* Margin yok */
             }
 
-        /* Liste elemanları için ayarlamalar */
+        /* Liste Elemanları */
         .list-group-item {
-            display: flex;
+            display: flex; /* Flexbox düzeni */
             align-items: center; /* Checkbox ve metni ortalar */
-            font-size: 0.75rem; /* Küçültülmüş font boyutu */
-            padding: 0.5rem; /* Küçültülmüş padding */
-            box-sizing: border-box; /* Padding ve border'ı eleman boyutlarına dahil eder */
+            font-size: 0.75rem; /* Küçük font boyutu */
+            padding: 0.5rem; /* İç boşluk */
+            box-sizing: border-box; /* Padding ve border'ı boyutlara dahil eder */
         }
 
+        /* Form Kontrolü */
         .form-check {
-            display: flex;
+            display: flex; /* Flexbox düzeni */
             align-items: center; /* Checkbox ve etiketleri hizalar */
-            margin-left: -1.5rem; /* Checkbox ve etiket arasındaki sağ kaymayı düzeltir ve sola kaydırır */
+            margin-left: -1.5rem; /* Sol kaydırma */
         }
 
         .form-check-input {
-            margin: 0; /* Checkbox'ı kutu içine hizalar */
+            margin: 0; /* Margin yok */
             margin-right: 0.5rem; /* Etiket ile araya boşluk bırakır */
-            position: relative; /* Konumlandırmayı kontrol etmek için */
+            position: relative; /* Konumlandırmayı kontrol eder */
             z-index: 1; /* Checkbox'ı etiketin üstünde gösterir */
         }
 
         .form-check-label {
-            margin: 0; /* Etiketi hizalar */
-            position: relative; /* Konumlandırmayı kontrol etmek için */
-            z-index: 0; /* Etiketin checkbox'ın altında olduğundan emin olur */
+            margin: 0; /* Margin yok */
+            position: relative; /* Konumlandırmayı kontrol eder */
+            z-index: 0; /* Etiketin checkbox'ın altında olmasını sağlar */
         }
 
+        /* Özel Buton Stilleri */
         .btn-custom {
-            font-size: 0.75rem; /* Küçültülmüş font boyutu */
-            padding: 0.25rem 0.5rem; /* Küçültülmüş padding */
-            border-radius: 0.25rem; /* Küçültülmüş border-radius */
+            font-size: 0.75rem; /* Küçük font boyutu */
+            padding: 0.25rem 0.5rem; /* İç boşluk */
+            border-radius: 0.25rem; /* Köşe yuvarlama */
         }
 
             .btn-custom:hover {
                 background-color: rgba(0, 0, 0, 0.1); /* Hover efekti */
             }
 
+        /* Filtre Butonları Konteyneri */
         .filter-btn-container {
-            display: flex;
-            gap: 1rem; /* Butonlar arasında boşluk */
-            position: absolute; /* Mutlak konumlandırma */
-            top: 60px; /* Üstten 60px mesafe */
-            right: 20px; /* Sağdan 20px mesafe */
+            display: flex; /* Flexbox düzeni */
+            gap: 1rem; /* Butonlar arası boşluk */
+            position: absolute; /* Mutlak konum */
+            top: 30px; /* Üstten mesafe */
+            right: 100px; /* Sağdan mesafe */
+        }
+
+        /* Karartma Katmanı Stili */
+        .overlay {
+            position: fixed; /* Sabit konum */
+            top: 0; /* Üst kenardan sıfır mesafe */
+            left: 0; /* Sol kenardan sıfır mesafe */
+            width: 100%; /* Tam genişlik */
+            height: 100%; /* Tam yükseklik */
+            background-color: rgba(0, 0, 0, 0.5); /* Karartma rengi ve şeffaflık */
+            display: none; /* Başlangıçta gizli */
+            z-index: 900; /* Menüden alt seviyede olması için */
         }
     </style>
 </head>
@@ -206,12 +243,12 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" href="/">Home</a>
+                <a class="navbar-brand" href="/">Akbaş Holding</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <button class="openbtn" onclick="openNav()">&#9776; Menu</button>
+                <button class="openbtn" onclick="openNav()">&#9776;</button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <!-- Menü öğeleri buraya eklenebilir -->
@@ -409,6 +446,7 @@
                     <button type="submit" class="btn btn-primary btn-custom">Filter</button>
                     <button type="reset" class="btn btn-secondary btn-custom">Reset</button>
                 </div>
+
             </form>
         </div>
     </div>

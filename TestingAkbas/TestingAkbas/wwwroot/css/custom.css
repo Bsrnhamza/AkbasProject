@@ -37,13 +37,30 @@
 
 /* Qualities renkleri */
 .qualities-m {
-    background-color: rgba(173, 216, 230, 0.25); /*main*/
+    background-color: rgba(173, 216, 230, 0.25); /* main */
 }
 
 .qualities-a {
-    background-color: rgba(255, 255, 224, 0.25); /*arhive*/
+    background-color: rgba(255, 255, 224, 0.25); /* archive */
 }
 
 .qualities-n {
-    background-color: rgba(144, 238, 144, 0.25); /*new*/
+    background-color: rgba(144, 238, 144, 0.25); /* new */
 }
+
+.currency-info-wrapper {
+    display: flex;
+    justify-content: flex-end; /* İçeriği sağa hizalar */
+    padding-right: 20px; /* Sağdan 20 piksel boşluk bırakır */
+}
+
+div.currency-info {
+    font-size: 10px; /* Metin boyutunu 10 piksel olarak ayarlar */
+    background-color: #ffffff; /* Arka plan rengini beyaz yapar */
+    padding: 1px; /* İç boşluğu 1 piksel olarak ayarlar */
+}
+
+    div.currency-info p {
+        margin: 0; /* Paragraflar arasındaki dış boşluğu sıfırlar */
+        line-height: 1.2; /* Satır yüksekliğini daha sıkı bir hale getirir */
+    }
