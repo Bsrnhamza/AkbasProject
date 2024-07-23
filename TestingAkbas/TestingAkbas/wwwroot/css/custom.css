@@ -1,8 +1,4 @@
-﻿/* QualityClass renkleri */
-
-/* Qualities renkleri */
-
-.currency-info-wrapper {
+﻿.currency-info-wrapper {
     display: flex;
     justify-content: flex-end; /* İçeriği sağa hizalar */
     padding-right: 20px; /* Sağdan 20 piksel boşluk bırakır */
