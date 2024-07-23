@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="~/css/custom.css" />
 }
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <!-- Döviz Bilgileri -->
 <div class="currency-info-wrapper">
     <div class="currency-info">
@@ -16,14 +18,50 @@
     </div>
 </div>
 
-<table class="table table-hover">
+<table class="table table-hover" id="fabricTable">
     <thead>
         <tr>
             <th>Quality Class</th>
-            <th>Fabric Code</th>
+            <th>
+                Fabric Code <br />
+                <div class="filter-section">
+                    <label for="fabricCodeFilter"></label>
+                    <select id="fabricCodeFilter">
+                        <option value="">All</option>
+                        @foreach (var item in Model.Select(x => x.FabricCode).Distinct())
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </div>
+            </th>
             <th>Qualities</th>
-            <th>Quality Name</th>
-            <th>Quality Group</th>
+            <th>
+                Quality Name<br />
+                <div class="filter-section">
+                    <label for="qualityNameFilter"></label>
+                    <select id="qualityNameFilter">
+                        <option value="">All</option>
+                        @foreach (var item in Model.Select(x => x.QualityName).Distinct())
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </div>
+            </th>
+            <th>
+                Quality Group <br />
+                <div class="filter-section">
+                    <label for="qualityGroupFilter"></label>
+                    <select id="qualityGroupFilter">
+                        <option value="">All</option>
+                        @foreach (var item in Model.Select(x => x.QualityGroup).Distinct())
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
+                </div>
+            </th>
             <th>Quality Composition</th>
             <th>Pattern Type</th>
             <th>Width</th>
@@ -37,7 +75,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr data-fabric-code="@item.FabricCode" data-quality-name="@item.QualityName" data-quality-group="@item.QualityGroup">
                 <td class="@GetQualityClassCssClass(item.QualityClass)">
                     @Html.DisplayFor(modelItem => item.QualityClass)
                 </td>
@@ -88,7 +126,35 @@
     </tbody>
 </table>
 
-@functions { public string GetQualityClassCssClass(string qualityClass)
+<script>
+    $(document).ready(function () {
+        function filterTable() {
+            var fabricCode = $('#fabricCodeFilter').val().toLowerCase();
+            var qualityName = $('#qualityNameFilter').val().toLowerCase();
+            var qualityGroup = $('#qualityGroupFilter').val().toLowerCase();
+
+            $('#fabricTable tbody tr').each(function () {
+                var row = $(this);
+                var rowFabricCode = row.data('fabric-code').toLowerCase();
+                var rowQualityName = row.data('quality-name').toLowerCase();
+                var rowQualityGroup = row.data('quality-group').toLowerCase();
+
+                if ((fabricCode === "" || rowFabricCode === fabricCode) &&
+                    (qualityName === "" || rowQualityName === qualityName) &&
+                    (qualityGroup === "" || rowQualityGroup === qualityGroup)) {
+                    row.show();
+                } else {
+                    row.hide();
+                }
+            });
+        }
+
+        $('#fabricCodeFilter, #qualityNameFilter, #qualityGroupFilter').on('change', filterTable);
+    });
+</script>
+
+@functions {
+    public string GetQualityClassCssClass(string qualityClass)
     {
         switch (qualityClass?.ToLower())
         {
@@ -132,4 +198,5 @@
             default:
                 return "";
         }
-    } }
+    }
+}
