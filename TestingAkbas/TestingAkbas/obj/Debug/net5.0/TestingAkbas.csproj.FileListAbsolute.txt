@@ -451,3 +451,4 @@ C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Debug\net5.
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Debug\net5.0\ref\TestingAkbas.dll
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Debug\net5.0\TestingAkbas.pdb
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Debug\net5.0\TestingAkbas.genruntimeconfig.cache
+C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Debug\net5.0\Razor\Views\Shared\FabricsLayout.cshtml.g.cs
