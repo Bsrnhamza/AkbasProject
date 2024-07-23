@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center; /* İçeriği yatay olarak ortalar */
     padding: 20px; /* Sağdan ve soldan boşluk bırakır */
+    overflow-x: auto; /* Yatay kaydırma çubuğunu gösterir */
 }
 
 .currency-info {
@@ -22,12 +23,14 @@
     .filter-section select {
         margin-top: 5px;
     }
+
 /* Input kutuları */
 #minWidth, #maxWidth, #minWeight, #maxWeight {
     width: 47px; /* Genişliği küçültmek için */
     padding: 5px; /* İç boşluk */
     font-size: 10px; /* Yazı boyutu */
 }
+
 /* Select kutuları için stil ayarları */
 #fabricCodeFilter, #qualityNameFilter, #qualityGroupFilter {
     width: 50px; /* Genişlik ayarı: Kutuların genişliğini ayarlar */
