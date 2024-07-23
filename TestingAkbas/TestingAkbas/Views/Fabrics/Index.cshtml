@@ -23,42 +23,42 @@
         <tr>
             <th>Quality Class</th>
             <th>
-                Fabric Code <br />
+                Fabric Code
                 <div class="filter-section">
-                    <label for="fabricCodeFilter"></label>
+                    <label for="fabricCodeFilter" class="sr-only">Filter by Fabric Code</label>
                     <select id="fabricCodeFilter">
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.FabricCode).Distinct())
                         {
                             <option value="@item">@item</option>
-                        }
+}
                     </select>
                 </div>
             </th>
             <th>Qualities</th>
             <th>
-                Quality Name<br />
+                Quality Name
                 <div class="filter-section">
-                    <label for="qualityNameFilter"></label>
+                    <label for="qualityNameFilter" class="sr-only">Filter by Quality Name</label>
                     <select id="qualityNameFilter">
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.QualityName).Distinct())
                         {
                             <option value="@item">@item</option>
-                        }
+}
                     </select>
                 </div>
             </th>
             <th>
-                Quality Group <br />
+                Quality Group
                 <div class="filter-section">
-                    <label for="qualityGroupFilter"></label>
+                    <label for="qualityGroupFilter" class="sr-only">Filter by Quality Group</label>
                     <select id="qualityGroupFilter">
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.QualityGroup).Distinct())
                         {
                             <option value="@item">@item</option>
-                        }
+}
                     </select>
                 </div>
             </th>

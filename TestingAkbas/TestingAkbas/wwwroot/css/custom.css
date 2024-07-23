@@ -64,3 +64,35 @@ div.currency-info {
         margin: 0; /* Paragraflar arasındaki dış boşluğu sıfırlar */
         line-height: 1.2; /* Satır yüksekliğini daha sıkı bir hale getirir */
     }
+/* Genel tablo stilini ayarla */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .table th, .table td {
+        padding: 8px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    /* Başlık hücreleri için stil ayarları */
+    .table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+
+    /* Filtreler ve başlık hizalamalarını düzenle */
+    .table th {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+.filter-section {
+    margin-top: 5px;
+}
+
+    .filter-section select {
+        margin-top: 5px;
+    }
