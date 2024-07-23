@@ -1,20 +1,20 @@
-﻿.currency-info-wrapper {
+﻿/* Döviz Bilgileri */
+.currency-info-wrapper {
     display: flex;
-    justify-content: flex-end; /* İçeriği sağa hizalar */
-    padding-right: 20px; /* Sağdan 20 piksel boşluk bırakır */
+    justify-content: center; /* İçeriği yatay olarak ortalar */
+    padding: 20px; /* Sağdan ve soldan boşluk bırakır */
 }
 
-div.currency-info {
-    font-size: 10px; /* Metin boyutunu 10 piksel olarak ayarlar */
-    background-color: #ffffff; /* Arka plan rengini beyaz yapar */
-    padding: 1px; /* İç boşluğu 1 piksel olarak ayarlar */
+.currency-info {
+    font-size: 10px; /* Yazı boyutunu 10 piksel olarak ayarlar */
 }
 
-    div.currency-info p {
+    .currency-info p {
         margin: 0; /* Paragraflar arasındaki dış boşluğu sıfırlar */
         line-height: 1.2; /* Satır yüksekliğini daha sıkı bir hale getirir */
     }
 
+/* Filtreleme Bölümü */
 .filter-section {
     margin-top: 5px;
 }
@@ -22,3 +22,16 @@ div.currency-info {
     .filter-section select {
         margin-top: 5px;
     }
+/* Input kutuları */
+#minWidth, #maxWidth, #minWeight, #maxWeight {
+    width: 47px; /* Genişliği küçültmek için */
+    padding: 5px; /* İç boşluk */
+    font-size: 10px; /* Yazı boyutu */
+}
+/* Select kutuları için stil ayarları */
+#fabricCodeFilter, #qualityNameFilter, #qualityGroupFilter {
+    width: 50px; /* Genişlik ayarı: Kutuların genişliğini ayarlar */
+    padding: 5px; /* İç boşluk ayarı: İçerik ile kutu kenarları arasındaki boşluk */
+    font-size: 12px; /* Yazı boyutu ayarı: Seçeneklerin yazı boyutunu ayarlar */
+    margin-bottom: 0px; /* Alt boşluk ayarı: Kutuların altındaki boşluk */
+}

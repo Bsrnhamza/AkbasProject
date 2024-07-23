@@ -67,7 +67,6 @@ body {
 
     /* Navbar içindeki elemanlar için görünürlük ayarları */
     .navbar .navbar-brand,
-    .navbar .navbar-nav .nav-link,
     .navbar .navbar-toggler {
         padding: 0.125rem 0.25rem; /* İç boşlukları azaltır */
         color: #333; /* Metin rengini koyu gri yapar */
@@ -80,14 +79,6 @@ body {
 .navbar-nav {
     display: flex; /* Flexbox düzenini aktifleştirir */
     gap: 15px; /* Öğeler arası boşluk */
-}
-
-.currency-info {
-    display: flex; /* Flex düzeni */
-    align-items: center; /* Dikey ortalama */
-    gap: 20px; /* Öğeler arası boşluk */
-    font-size: 0.875rem; /* Font boyutu */
-    color: #333; /* Metin rengi */
 }
 /* Open Button */
 .openbtn {
@@ -173,19 +164,6 @@ body {
 }
 
 /* Kalite Grupları */
-.quality-group {
-    display: flex; /* Flexbox düzeni */
-    flex-wrap: wrap; /* Satıra sarmayı sağlar */
-    gap: 10px; /* Elemanlar arası boşluk */
-}
-
-    .quality-group ul {
-        flex: 1; /* Eşit genişlik */
-        box-sizing: border-box; /* Padding ve border'ı boyutlara dahil eder */
-        list-style: none; /* Liste işaretlerini kaldırır */
-        padding: 0; /* Padding yok */
-        margin: 0; /* Margin yok */
-    }
 
 /* Liste Elemanları */
 .list-group-item {
@@ -236,19 +214,3 @@ body {
     right: 100px; /* Sağdan mesafe */
 }
 
-/* Karartma Katmanı Stili */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Yarı şeffaf karartma */
-    z-index: 999; /* İçerik üzerinde olacak şekilde */
-    display: none; /* Varsayılan olarak gizli */
-}
-
-    /* Gösterildiğinde karartma görünür */
-    .overlay.show {
-        display: block;
-    }
