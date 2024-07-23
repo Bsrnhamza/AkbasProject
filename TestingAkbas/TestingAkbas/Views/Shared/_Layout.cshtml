@@ -69,6 +69,10 @@
             backdrop-filter: none; /* Arka plan bulanıklığını kaldırır */
             border-bottom: 1px solid rgba(255, 255, 255, 0); /* Sınırı da görünmez yapar */
             height: 50px; /* İnce görünüm için yükseklik */
+            display: flex; /* Flex düzenini etkinleştirir */
+            justify-content: space-between; /* Öğeleri hizalar */
+            align-items: center; /* Öğeleri ortalar */
+            padding: 0 20px; /* Sağdan ve soldan padding */
         }
 
             /* Navbar içindeki elemanlar için görünürlük ayarları */
@@ -82,6 +86,19 @@
                 font-size: 0.875rem; /* Daha küçük font boyutu ile ince görünüm sağlar */
             }
 
+        /* Navbar içindeki elemanlar arasına boşluk ekler */
+        .navbar-nav {
+            display: flex; /* Flexbox düzenini aktifleştirir */
+            gap: 15px; /* Öğeler arası boşluk */
+        }
+
+        .currency-info {
+            display: flex; /* Flex düzeni */
+            align-items: center; /* Dikey ortalama */
+            gap: 20px; /* Öğeler arası boşluk */
+            font-size: 0.875rem; /* Font boyutu */
+            color: #333; /* Metin rengi */
+        }
         /* Open Button */
         .openbtn {
             position: absolute; /* Mutlak konum */
@@ -246,8 +263,6 @@
                 display: block;
             }
     </style>
-
-
 </head>
 <body>
     <header>
@@ -263,6 +278,7 @@
                     <ul class="navbar-nav">
                         <!-- Menü öğeleri buraya eklenebilir -->
                     </ul>
+
                 </div>
             </div>
         </nav>
