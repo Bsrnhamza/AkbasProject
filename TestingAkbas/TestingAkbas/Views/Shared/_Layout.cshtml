@@ -56,37 +56,36 @@
             color: #333; /* Koyu gri renk */
             z-index: 1100; /* Menüden üstte olması için */
         }
+
         /* Navbar Sabitleme Stili */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            z-index: 1000;
-            padding: 0.25rem 0.5rem;
-            background-color: rgba(255, 255, 255, 0.8); /* Beyaz arka plan, %80 opaklık */
-            box-shadow: none; /* Gölge yok */
-            backdrop-filter: blur(10px); /* Arka planı bulanıklaştırarak daha belirgin saydamlık etkisi sağlar */
+            z-index: 10;
+            padding: 0.25rem 0.5rem; /* Düşük padding ile ince görünüm sağlar */
+            background-color: rgba(255, 255, 255, 0); /* Arka planı tamamen şeffaf yapar */
+            backdrop-filter: none; /* Arka plan bulanıklığını kaldırır */
+            border-bottom: 1px solid rgba(255, 255, 255, 0); /* Sınırı da görünmez yapar */
+            height: 50px; /* İnce görünüm için yükseklik */
         }
 
-
-        /* Navbar içindeki diğer elemanlar için stil ayarları */
-        .navbar-brand,
-        .navbar-nav .nav-link,
-        .navbar-toggler {
-            padding: 0.125rem 0.25rem; /* İç boşlukları azaltır */
-            color: #333; /* Metin rengini koyu gri yapar */
-        }
-
-            /* Navbar linklerinin üzerine geldiğinde renk değişimi */
-            .navbar-nav .nav-link:hover {
-                color: #000; /* Renk değişimi */
+            /* Navbar içindeki elemanlar için görünürlük ayarları */
+            .navbar .navbar-brand,
+            .navbar .navbar-nav .nav-link,
+            .navbar .navbar-toggler {
+                padding: 0.125rem 0.25rem; /* İç boşlukları azaltır */
+                color: #333; /* Metin rengini koyu gri yapar */
+                background-color: transparent; /* Arka planı şeffaf yapar */
+                border: none; /* Kenarları kaldırır */
+                font-size: 0.875rem; /* Daha küçük font boyutu ile ince görünüm sağlar */
             }
 
-
+        /* Open Button */
         .openbtn {
             position: absolute; /* Mutlak konum */
-            right: 20px; /* Sağ kenardan 10px mesafe */
+            right: 20px; /* Sağ kenardan 20px mesafe */
         }
 
         /* Ana İçerik Stilleri */
@@ -99,69 +98,67 @@
         .quality-class-viscose {
             background-color: rgba(255, 165, 0, 0.5);
         }
-        /* Viskon - turuncu */
+
         .quality-class-rayon {
             background-color: rgba(0, 128, 0, 0.5);
         }
-        /* Rayon - yeşil */
+
         .quality-class-rynsignart {
             background-color: rgba(0, 128, 0, 0.5);
         }
-        /* Rynsignart - yeşil */
+
         .quality-class-cotton {
             background-color: rgba(128, 0, 128, 0.5);
         }
-        /* Pamuk - mor */
+
         .quality-class-nylon {
             background-color: rgba(255, 255, 0, 0.5);
         }
-        /* Naylon - sarı */
+
         .quality-class-polyester {
             background-color: rgba(255, 0, 0, 0.5);
         }
-        /* Polyester - kırmızı */
+
         .quality-class-pesdouble {
             background-color: rgba(255, 0, 0, 0.5);
         }
-        /* PES Double - kırmızı */
+
         .quality-class-tencel {
             background-color: rgba(0, 0, 255, 0.5);
         }
-        /* Tencel - mavi */
+
         .quality-class-modal {
             background-color: rgba(0, 0, 255, 0.5);
         }
-        /* Modal - mavi */
+
         .quality-class-linen {
             background-color: rgba(173, 216, 230, 0.5);
         }
-        /* Keten - açık mavi */
+
         .quality-class-jacquard {
             background-color: rgba(128, 128, 128, 0.5);
         }
-        /* Jakar - gri */
+
         .quality-class-mix {
             background-color: rgba(211, 211, 211, 0.5);
         }
-        /* Karışım - açık gri */
+
         .quality-class-yarndyed {
             background-color: rgba(211, 211, 211, 0.5);
         }
-        /* Yarı boyalı - açık gri */
 
         /* Kalite Sınıfları Renkleri */
         .qualities-m {
             background-color: rgba(173, 216, 230, 0.25);
         }
-        /* Ana - açık mavi */
+
         .qualities-a {
             background-color: rgba(255, 255, 224, 0.25);
         }
-        /* Arşiv - açık sarı */
+
         .qualities-n {
             background-color: rgba(144, 238, 144, 0.25);
         }
-        /* Yeni - açık yeşil */
 
         /* Airflow ve Sustainable Filtre Renkleri */
         .airflow-filter, .sustainable-filter {
@@ -234,16 +231,23 @@
 
         /* Karartma Katmanı Stili */
         .overlay {
-            position: fixed; /* Sabit konum */
-            top: 0; /* Üst kenardan sıfır mesafe */
-            left: 0; /* Sol kenardan sıfır mesafe */
-            width: 100%; /* Tam genişlik */
-            height: 100%; /* Tam yükseklik */
-            background-color: rgba(0, 0, 0, 0.5); /* Karartma rengi ve şeffaflık */
-            display: none; /* Başlangıçta gizli */
-            z-index: 900; /* Menüden alt seviyede olması için */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Yarı şeffaf karartma */
+            z-index: 999; /* İçerik üzerinde olacak şekilde */
+            display: none; /* Varsayılan olarak gizli */
         }
+
+            /* Gösterildiğinde karartma görünür */
+            .overlay.show {
+                display: block;
+            }
     </style>
+
+
 </head>
 <body>
     <header>
@@ -400,31 +404,33 @@
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <div class="form-check">
-                                    <input type="checkbox" name="priceList" value="general" id="general" class="form-check-input" />
+                                    <input type="radio" name="priceList" value="general" id="general" class="form-check-input" checked />
                                     <label for="general" class="form-check-label">General</label>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="form-check">
-                                    <input type="checkbox" name="priceList" value="confection" id="confection" class="form-check-input" />
+                                    <input type="radio" name="priceList" value="confection" id="confection" class="form-check-input" />
                                     <label for="confection" class="form-check-label">Confection</label>
                                 </div>
                             </li>
                         </ul>
                     </div>
+
+
                     <div class="p-2">
                         <h5 class="font-size-small">Sale Price</h5>
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <div class="form-check">
-                                    <input type="checkbox" name="domesticPrice" value="domesticPrice" id="domesticPrice" class="form-check-input" />
-                                    <label for="domesticPrice" class="form-check-label">Domestic</label>
+                                    <input type="radio" id="filterDomestic" name="filterType" value="Domestic" class="form-check-input" />
+                                    <label for="filterDomestic" class="form-check-label">Domestic</label>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="form-check">
-                                    <input type="checkbox" name="salePrice" value="export" id="export" class="form-check-input" />
-                                    <label for="export" class="form-check-label">Export</label>
+                                    <input type="radio" id="filterExport" name="filterType" value="Export" class="form-check-input" />
+                                    <label for="filterExport" class="form-check-label">Export</label>
                                 </div>
                             </li>
                         </ul>
@@ -434,18 +440,19 @@
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <div class="form-check">
-                                    <input type="checkbox" name="currency" value="dollar" id="dollar" class="form-check-input" />
+                                    <input type="radio" name="currency" value="dollar" id="dollar" class="form-check-input" />
                                     <label for="dollar" class="form-check-label">Dollar</label>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="form-check">
-                                    <input type="checkbox" name="currency" value="euro" id="euro" class="form-check-input" />
+                                    <input type="radio" name="currency" value="euro" id="euro" class="form-check-input" />
                                     <label for="euro" class="form-check-label">Euro</label>
                                 </div>
                             </li>
                         </ul>
                     </div>
+
 
                 </div>
                 <div class="filter-btn-container">
@@ -473,6 +480,30 @@
             document.getElementById("myNav").style.width = "0";
             document.getElementById("mainContent").style.marginRight = "0";
         }
+        function applyFilter() {
+            var domesticCheckbox = document.getElementById('domesticFilter');
+            var exportCheckbox = document.getElementById('exportFilter');
+            var rows = document.querySelectorAll('#qualityTable tbody tr');
+
+            rows.forEach(row => {
+                var domesticPriceCell = row.querySelector('td:nth-child(11)');
+                var exportPriceCell = row.querySelector('td:nth-child(12)');
+
+                if (domesticCheckbox.checked && !exportCheckbox.checked) {
+                    exportPriceCell.style.display = 'none';
+                    domesticPriceCell.style.display = '';
+                } else if (!domesticCheckbox.checked && exportCheckbox.checked) {
+                    domesticPriceCell.style.display = 'none';
+                    exportPriceCell.style.display = '';
+                } else {
+                    domesticPriceCell.style.display = '';
+                    exportPriceCell.style.display = '';
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', applyFilter);
     </script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
