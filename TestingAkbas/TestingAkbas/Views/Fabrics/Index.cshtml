@@ -4,7 +4,7 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/custom.css" />
 }
-<a href="@Url.Action("ExportToExcel", "Fabrics")" class="btn btn-primary">Export to Excel</a>
+<button type="button" id="exportButton" class="btn btn-outline-success btn-sm">Export to Excel</button>
 <div class="currency-info-wrapper">
     <div class="currency-info">
         EURO: 34, 7000 TL&nbsp;&nbsp;&nbsp;&nbsp;USD: 32, 5000 TL&nbsp;&nbsp;&nbsp;&nbsp;GBP: 41, 9100 TL&nbsp;&nbsp;&nbsp;&nbsp;€/$: 1, 0677&nbsp;&nbsp;&nbsp;&nbsp;GBP/$: 1, 2700
@@ -88,11 +88,11 @@
         @Html.DisplayFor(modelItem => item.FabricCode)
     </td>
     <td class="@GetQualitiesCssClass(item.Qualities)">
-    @Html.DisplayFor(modelItem => item.Qualities)
+        @Html.DisplayFor(modelItem => item.Qualities)
     </td>
     <td class="@GetQualitiesCssClass(item.Qualities)">
         @Html.DisplayFor(modelItem => item.QualityName)
-        </td>
+    </td>
     <td class="@GetQualitiesCssClass(item.Qualities)">
         @Html.DisplayFor(modelItem => item.QualityGroup)
     </td>
@@ -185,6 +185,53 @@
             });
         }
 
+        function exportVisibleDataToExcel() {
+            // Başlıkları ve verileri topla
+            var headers = [];
+            var data = [];
+
+            // Başlıkları topla
+            $('#fabricTable thead th').each(function () {
+                if ($(this).is(':visible')) {
+                    headers.push($(this).text().trim());
+                }
+            });
+
+            // Verileri topla
+            $('#fabricTable tbody tr').each(function () {
+                var row = $(this);
+                if (row.is(':visible')) {
+                    var rowData = [];
+                    row.find('td').each(function () {
+                        if ($(this).is(':visible')) {
+                            rowData.push($(this).text().trim());
+                        }
+                    });
+                    data.push(rowData);
+                }
+            });
+
+            // Excel'e aktarma işlemi için AJAX isteği yap
+            $.ajax({
+                url: '/Fabrics/ExportVisibleToExcel',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                success: function (response) {
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(response);
+                    link.download = 'AkbasHoldingTable.xlsx';
+                    link.click();
+                },
+                error: function () {
+                    alert('Veri aktarımı sırasında bir hata oluştu.');
+                }
+            });
+        }
+
         // Olay dinleyicileri
         $('#fabricCodeFilter, #qualityNameFilter, #qualityGroupFilter, #minWidth, #maxWidth, #minWeight, #maxWeight').on('change', function () {
             filterTable();
@@ -199,8 +246,14 @@
         // Sayfa yüklendiğinde uygun sütunları göster/gizle
         filterTable();
         updateColumnVisibility();
+
+        // Export to Excel butonuna tıklama olayını yakala
+        $('#exportButton').on('click', function () {
+            exportVisibleDataToExcel();
+        });
     });
 </script>
+
 
 
 @functions { public string GetQualityClassCssClass(string qualityClass)

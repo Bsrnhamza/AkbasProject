@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,13 +19,12 @@ namespace TestingAkbas.Controllers
         {
             _context = context;
         }
+
         // GET: Fabrics
-        public async Task<IActionResult> Index(string[] qualities, string[] qualityClasses, int pageNumber = 1, int pageSize = 20, string sortOrder = "asc")
+        public async Task<IActionResult> Index(string[] qualities, string[] qualityClasses)
         {
-            // Temel sorgu
             var fabrics = _context.Fabrics.AsQueryable();
 
-            // Filtreleme
             if (qualities != null && qualities.Length > 0)
             {
                 fabrics = fabrics.Where(f => qualities.Contains(f.Qualities));
@@ -35,24 +35,16 @@ namespace TestingAkbas.Controllers
                 fabrics = fabrics.Where(f => qualityClasses.Contains(f.QualityClass));
             }
 
-            // Sıralama
-            fabrics = sortOrder == "desc" ? fabrics.OrderByDescending(f => f.QualityName) : fabrics.OrderBy(f => f.QualityName);
-
-            // Sayfalama
-            var pagedFabrics = await fabrics
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-
-            return View(pagedFabrics);
+            return View(await fabrics.ToListAsync());
         }
-        public async Task<IActionResult> ExportToExcel()
-        {
-            var fabrics = await _context.Fabrics.ToListAsync();
 
+        // POST: Fabrics/ExportVisibleToExcel
+        [HttpPost]
+        public async Task<IActionResult> ExportVisibleToExcel([FromBody] List<List<string>> data)
+        {
             using (var package = new ExcelPackage())
             {
-                var worksheet = package.Workbook.Worksheets.Add("Fabrics");
+                var worksheet = package.Workbook.Worksheets.Add("Visible Fabrics");
 
                 // Başlıkları yazma
                 worksheet.Cells[1, 1].Value = "Quality Class";
@@ -69,21 +61,13 @@ namespace TestingAkbas.Controllers
                 worksheet.Cells[1, 12].Value = "Export Price";
 
                 // İçeriği yazma
-                for (int i = 0; i < fabrics.Count; i++)
+                for (int i = 0; i < data.Count; i++)
                 {
-                    var fabric = fabrics[i];
-                    worksheet.Cells[i + 2, 1].Value = fabric.QualityClass;
-                    worksheet.Cells[i + 2, 2].Value = fabric.FabricCode;
-                    worksheet.Cells[i + 2, 3].Value = fabric.Qualities;
-                    worksheet.Cells[i + 2, 4].Value = fabric.QualityName;
-                    worksheet.Cells[i + 2, 5].Value = fabric.QualityGroup;
-                    worksheet.Cells[i + 2, 6].Value = fabric.QualityComposition;
-                    worksheet.Cells[i + 2, 7].Value = fabric.PatternType;
-                    worksheet.Cells[i + 2, 8].Value = fabric.Width;
-                    worksheet.Cells[i + 2, 9].Value = fabric.Weight;
-                    worksheet.Cells[i + 2, 10].Value = fabric.RawFabricPrice;
-                    worksheet.Cells[i + 2, 11].Value = fabric.DomesticPrice;
-                    worksheet.Cells[i + 2, 12].Value = fabric.ExportPrice;
+                    var rowData = data[i];
+                    for (int j = 0; j < rowData.Count; j++)
+                    {
+                        worksheet.Cells[i + 2, j + 1].Value = rowData[j];
+                    }
                 }
 
                 // Stil ayarları
@@ -94,7 +78,7 @@ namespace TestingAkbas.Controllers
                 package.SaveAs(stream);
                 var content = stream.ToArray();
 
-                return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Fabrics.xlsx");
+                return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "VisibleFabrics.xlsx");
             }
         }
 

@@ -11,7 +11,7 @@
 }
 
 .currency-info {
-    font-size: 10px; /* Yazı boyutunu 10 piksel olarak ayarlar */
+    font-size: 11px; /* Yazı boyutunu 10 piksel olarak ayarlar */
 }   .currency-info p {
         margin: 0; /* Paragraflar arasındaki dış boşluğu sıfırlar */
         line-height: 1.2; /* Satır yüksekliğini daha sıkı bir hale getirir */
