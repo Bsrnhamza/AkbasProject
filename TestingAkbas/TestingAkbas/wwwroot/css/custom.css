@@ -42,3 +42,10 @@
     font-size: 12px; /* Yazı boyutu ayarı: Seçeneklerin yazı boyutunu ayarlar */
     margin-bottom: 0px; /* Alt boşluk ayarı: Kutuların altındaki boşluk */
 }
+/* exportButtonButon Boyutlandırma */
+#exportButton {
+    font-size: 0.75rem; /* Küçük yazı boyutu */
+    padding: 0.25rem 0.5rem; /* İç boşlukları küçültür */
+    border-radius: 0.2rem; /* Köşe yuvarlama */
+    line-height: 1.2; /* Satır yüksekliği */
+}
