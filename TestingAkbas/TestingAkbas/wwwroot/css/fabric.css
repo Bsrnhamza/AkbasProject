@@ -70,7 +70,6 @@ body {
     .navbar .navbar-toggler {
         padding: 0.125rem 0.25rem; /* İç boşlukları azaltır */
         color: #333; /* Metin rengini koyu gri yapar */
-        background-color: transparent; /* Arka planı şeffaf yapar */
         border: none; /* Kenarları kaldırır */
         font-size: 0.875rem; /* Daha küçük font boyutu ile ince görünüm sağlar */
     }

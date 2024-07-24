@@ -4,7 +4,11 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/custom.css" />
 }
-
+<div class="currency-info-wrapper">
+    <div class="currency-info">
+        EURO: 34, 7000 TL&nbsp;&nbsp;&nbsp;&nbsp;USD: 32, 5000 TL&nbsp;&nbsp;&nbsp;&nbsp;GBP: 41, 9100 TL&nbsp;&nbsp;&nbsp;&nbsp;€/$: 1, 0677&nbsp;&nbsp;&nbsp;&nbsp;GBP/$: 1, 2700
+    </div>
+</div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <table class="table table-hover" id="fabricTable">
     <thead>
@@ -18,8 +22,7 @@
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.FabricCode).Distinct())
                         {
-                            <option value="@item">@item</option>
-                        }
+            <option value="@item">@item</option>}
                     </select>
                 </div>
             </th>
@@ -32,8 +35,7 @@
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.QualityName).Distinct())
                         {
-                            <option value="@item">@item</option>
-                        }
+            <option value="@item">@item</option>}
                     </select>
                 </div>
             </th>
@@ -45,8 +47,7 @@
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.QualityGroup).Distinct())
                         {
-                            <option value="@item">@item</option>
-                        }
+            <option value="@item">@item</option>}
                     </select>
                 </div>
             </th>
@@ -78,45 +79,44 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr data-fabric-code="@item.FabricCode" data-quality-name="@item.QualityName" data-quality-group="@item.QualityGroup">
-                <td class="@GetQualityClassCssClass(item.QualityClass)">
-                    @Html.DisplayFor(modelItem => item.QualityClass)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.FabricCode)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.Qualities)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.QualityName)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.QualityGroup)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.QualityComposition)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.PatternType)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.Width)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.Weight)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.RawFabricPrice)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.DomesticPrice)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.ExportPrice)
-                </td>
-            </tr>
-        }
+<tr data-fabric-code="@item.FabricCode" data-quality-name="@item.QualityName" data-quality-group="@item.QualityGroup">
+    <td class="@GetQualityClassCssClass(item.QualityClass)">
+        @Html.DisplayFor(modelItem => item.QualityClass)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.FabricCode)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.Qualities)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.QualityName)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.QualityGroup)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.QualityComposition)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.PatternType)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.Width)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.Weight)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.RawFabricPrice)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.DomesticPrice)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.ExportPrice)
+    </td>
+</tr>}
     </tbody>
 </table>
 <script>
@@ -153,13 +153,56 @@
             });
         }
 
-        $('#fabricCodeFilter, #qualityNameFilter, #qualityGroupFilter, #minWidth, #maxWidth, #minWeight, #maxWeight').on('change', filterTable);
+        function updateColumnVisibility() {
+            var filterType = $('input[name="filterType"]:checked').val();
+            var exportPriceColIndex = 11; // 12. sütun (index 11)
+            var domesticPriceColIndex = 10; // 11. sütun (index 10)
+
+            // Başlıkların görünürlüğünü güncelle
+            $('#fabricTable thead th').each(function (index) {
+                if (filterType === 'Domestic') {
+                    $(this).toggle(index !== exportPriceColIndex);
+                } else if (filterType === 'Export') {
+                    $(this).toggle(index !== domesticPriceColIndex);
+                } else {
+                    $(this).show(); // Her şey görünür
+                }
+            });
+
+            // Hücrelerin görünürlüğünü güncelle
+            $('#fabricTable tbody tr').each(function () {
+                var row = $(this);
+                row.find('td').each(function (index) {
+                    if (filterType === 'Domestic') {
+                        $(this).toggle(index !== exportPriceColIndex);
+                    } else if (filterType === 'Export') {
+                        $(this).toggle(index !== domesticPriceColIndex);
+                    } else {
+                        $(this).show(); // Her şey görünür
+                    }
+                });
+            });
+        }
+
+        // Olay dinleyicileri
+        $('#fabricCodeFilter, #qualityNameFilter, #qualityGroupFilter, #minWidth, #maxWidth, #minWeight, #maxWeight').on('change', function () {
+            filterTable();
+            updateColumnVisibility();
+        });
+
+        $('input[name="filterType"]').on('change', function () {
+            filterTable();
+            updateColumnVisibility();
+        });
+
+        // Sayfa yüklendiğinde uygun sütunları göster/gizle
+        filterTable();
+        updateColumnVisibility();
     });
 </script>
 
 
-@functions {
-    public string GetQualityClassCssClass(string qualityClass)
+@functions { public string GetQualityClassCssClass(string qualityClass)
     {
         switch (qualityClass?.ToLower())
         {
@@ -203,5 +246,4 @@
             default:
                 return "";
         }
-    }
-}
+    } }

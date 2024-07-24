@@ -1,8 +1,7 @@
 ﻿/* Döviz Bilgileri */
 .currency-info-wrapper {
     display: flex;
-    justify-content: center; /* İçeriği yatay olarak ortalar */
-    padding: 20px; /* Sağdan ve soldan boşluk bırakır */
+    justify-content: right; /* İçeriği yatay olarak ortalar */
     overflow-x: auto; /* Yatay kaydırma çubuğunu gösterir */
 }
 
