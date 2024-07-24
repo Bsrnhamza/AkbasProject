@@ -17,10 +17,12 @@ namespace TestingAkbas.Controllers
             _context = context;
         }
         // GET: Fabrics
-        public async Task<IActionResult> Index(string[] qualities, string[] qualityClasses)
+        public async Task<IActionResult> Index(string[] qualities, string[] qualityClasses, int pageNumber = 1, int pageSize = 20, string sortOrder = "asc")
         {
+            // Temel sorgu
             var fabrics = _context.Fabrics.AsQueryable();
 
+            // Filtreleme
             if (qualities != null && qualities.Length > 0)
             {
                 fabrics = fabrics.Where(f => qualities.Contains(f.Qualities));
@@ -31,7 +33,16 @@ namespace TestingAkbas.Controllers
                 fabrics = fabrics.Where(f => qualityClasses.Contains(f.QualityClass));
             }
 
-            return View(await fabrics.ToListAsync());
+            // Sıralama
+            fabrics = sortOrder == "desc" ? fabrics.OrderByDescending(f => f.QualityName) : fabrics.OrderBy(f => f.QualityName);
+
+            // Sayfalama
+            var pagedFabrics = await fabrics
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return View(pagedFabrics);
         }
 
 

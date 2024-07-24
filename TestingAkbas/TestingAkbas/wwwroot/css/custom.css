@@ -1,4 +1,9 @@
-﻿/* Döviz Bilgileri */
+﻿/* Tablo içindeki tüm hücrelerin font boyutunu küçültür */
+.table td, .table th {
+    font-size: 13px; /* İstediğiniz font boyutunu buraya yazabilirsiniz */
+}
+
+/* Döviz Bilgileri */
 .currency-info-wrapper {
     display: flex;
     justify-content: right; /* İçeriği yatay olarak ortalar */
@@ -7,9 +12,7 @@
 
 .currency-info {
     font-size: 10px; /* Yazı boyutunu 10 piksel olarak ayarlar */
-}
-
-    .currency-info p {
+}   .currency-info p {
         margin: 0; /* Paragraflar arasındaki dış boşluğu sıfırlar */
         line-height: 1.2; /* Satır yüksekliğini daha sıkı bir hale getirir */
     }

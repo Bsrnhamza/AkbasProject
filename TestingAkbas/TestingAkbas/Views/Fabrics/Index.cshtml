@@ -57,7 +57,7 @@
                 Width
                 <div class="filter-section">
                     <label for="minWidth" class="sr-only">Min Width</label>
-                    <input type="number" id="minWidth" placeholder="Min">
+                    <input type="number" id="minWidth" placeholder="Min"><br />
                     <label for="maxWidth" class="sr-only">Max Width</label>
                     <input type="number" id="maxWidth" placeholder="Max">
                 </div>
@@ -66,7 +66,7 @@
                 Weight
                 <div class="filter-section">
                     <label for="minWeight" class="sr-only">Min Weight</label>
-                    <input type="number" id="minWeight" placeholder="Min">
+                    <input type="number" id="minWeight" placeholder="Min"><br />
                     <label for="maxWeight" class="sr-only">Max Weight</label>
                     <input type="number" id="maxWeight" placeholder="Max">
                 </div>
@@ -87,11 +87,11 @@
         @Html.DisplayFor(modelItem => item.FabricCode)
     </td>
     <td class="@GetQualitiesCssClass(item.Qualities)">
-        @Html.DisplayFor(modelItem => item.Qualities)
+    @Html.DisplayFor(modelItem => item.Qualities)
     </td>
     <td class="@GetQualitiesCssClass(item.Qualities)">
         @Html.DisplayFor(modelItem => item.QualityName)
-    </td>
+        </td>
     <td class="@GetQualitiesCssClass(item.Qualities)">
         @Html.DisplayFor(modelItem => item.QualityGroup)
     </td>
