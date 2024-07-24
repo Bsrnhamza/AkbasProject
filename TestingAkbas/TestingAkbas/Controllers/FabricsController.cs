@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using TestingAkbas.Data;
 using TestingAkbas.Models;
 
@@ -44,7 +46,57 @@ namespace TestingAkbas.Controllers
 
             return View(pagedFabrics);
         }
+        public async Task<IActionResult> ExportToExcel()
+        {
+            var fabrics = await _context.Fabrics.ToListAsync();
 
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Fabrics");
+
+                // Başlıkları yazma
+                worksheet.Cells[1, 1].Value = "Quality Class";
+                worksheet.Cells[1, 2].Value = "Fabric Code";
+                worksheet.Cells[1, 3].Value = "Qualities";
+                worksheet.Cells[1, 4].Value = "Quality Name";
+                worksheet.Cells[1, 5].Value = "Quality Group";
+                worksheet.Cells[1, 6].Value = "Quality Composition";
+                worksheet.Cells[1, 7].Value = "Pattern Type";
+                worksheet.Cells[1, 8].Value = "Width";
+                worksheet.Cells[1, 9].Value = "Weight";
+                worksheet.Cells[1, 10].Value = "Raw Fabric Price";
+                worksheet.Cells[1, 11].Value = "Domestic Price";
+                worksheet.Cells[1, 12].Value = "Export Price";
+
+                // İçeriği yazma
+                for (int i = 0; i < fabrics.Count; i++)
+                {
+                    var fabric = fabrics[i];
+                    worksheet.Cells[i + 2, 1].Value = fabric.QualityClass;
+                    worksheet.Cells[i + 2, 2].Value = fabric.FabricCode;
+                    worksheet.Cells[i + 2, 3].Value = fabric.Qualities;
+                    worksheet.Cells[i + 2, 4].Value = fabric.QualityName;
+                    worksheet.Cells[i + 2, 5].Value = fabric.QualityGroup;
+                    worksheet.Cells[i + 2, 6].Value = fabric.QualityComposition;
+                    worksheet.Cells[i + 2, 7].Value = fabric.PatternType;
+                    worksheet.Cells[i + 2, 8].Value = fabric.Width;
+                    worksheet.Cells[i + 2, 9].Value = fabric.Weight;
+                    worksheet.Cells[i + 2, 10].Value = fabric.RawFabricPrice;
+                    worksheet.Cells[i + 2, 11].Value = fabric.DomesticPrice;
+                    worksheet.Cells[i + 2, 12].Value = fabric.ExportPrice;
+                }
+
+                // Stil ayarları
+                worksheet.Cells[1, 1, 1, 12].Style.Font.Bold = true;
+                worksheet.Cells.AutoFitColumns(0); // Sütun genişliklerini otomatik ayarlar
+
+                var stream = new MemoryStream();
+                package.SaveAs(stream);
+                var content = stream.ToArray();
+
+                return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Fabrics.xlsx");
+            }
+        }
 
         // GET: Fabrics/Details/5
         public async Task<IActionResult> Details(int? id)
