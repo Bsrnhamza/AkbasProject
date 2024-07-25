@@ -6,8 +6,8 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/fabric.css" />
-    @RenderSection("Styles", required: false)
 
+    @RenderSection("Styles", required: false)
 </head>
 <body>
     <header>
@@ -24,7 +24,6 @@
                 <button class="openbtn" onclick="openNav()">&#9776;</button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <!-- Menü öğeleri buraya eklenebilir -->
                         <li class="nav-item">
                             <span class="nav-link disabled">Boyahane Genel Fiyat Listesi</span>
                         </li>
@@ -34,11 +33,10 @@
         </nav>
     </header>
 
-
     <div id="myNav" class="offcanvas">
         <a href="javascript:void(0)" class="offcanvas-close" onclick="closeNav()">&times;</a>
         <div class="container">
-            <form asp-controller="Fabrics" asp-action="Index" method="get">
+            <form asp-controller="Fabrics" asp-action="Index" method="get" id="filterForm">
                 <div class="d-flex flex-column mr-3">
                     <!-- QUALITIES Filter -->
                     <div class="p-2">
@@ -83,7 +81,7 @@
                             <li class="list-group-item quality-class-rynsignart">
                                 <div class="form-check">
                                     <input type="checkbox" name="qualityClasses" value="rynsignart" id="rynsignart" class="form-check-input" />
-                                    <label for="rynsignart" class="form-check-label">RYN S.</label>
+                                    <label for="rynsignart" class="form-check-label">RYNSIGNART</label>
                                 </div>
                             </li>
                             <li class="list-group-item quality-class-cotton">
@@ -107,7 +105,7 @@
                             <li class="list-group-item quality-class-pesdouble">
                                 <div class="form-check">
                                     <input type="checkbox" name="qualityClasses" value="pesdouble" id="pesdouble" class="form-check-input" />
-                                    <label for="pesdouble" class="form-check-label">PES D.</label>
+                                    <label for="pesdouble" class="form-check-label">PESDOUBLE</label>
                                 </div>
                             </li>
                             <li class="list-group-item quality-class-tencel">
@@ -143,46 +141,31 @@
                             <li class="list-group-item quality-class-yarndyed">
                                 <div class="form-check">
                                     <input type="checkbox" name="qualityClasses" value="yarndyed" id="yarndyed" class="form-check-input" />
-                                    <label for="yarndyed" class="form-check-label">YARN D.</label>
+                                    <label for="yarndyed" class="form-check-label">YARN DYED</label>
                                 </div>
                             </li>
                         </ul>
                     </div>
-                    <!-- Yeni filtreler: AIRFLOW ve SUSTAINABLE -->
-                    <div class="p-2">
-                        <h5 class="font-size-small">Additional Filters</h5>
-                        <ul class="list-group">
-                            <li class="list-group-item airflow-filter">
-                                <div class="form-check">
-                                    <input type="checkbox" name="additionalFilters" value="airflow" id="airflow" class="form-check-input" />
-                                    <label for="airflow" class="form-check-label">Airflow</label>
-                                </div>
-                            </li>
-                            <li class="list-group-item sustainable-filter">
-                                <div class="form-check">
-                                    <input type="checkbox" name="additionalFilters" value="sustainable" id="sustainable" class="form-check-input" />
-                                    <label for="sustainable" class="form-check-label">Sustainable</label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    <!-- Price List Filter -->
                     <div class="p-2">
                         <h5 class="font-size-small">Price List</h5>
-                        <ul class="list-group">
+                        <ul class="list-group price-list">
                             <li class="list-group-item">
                                 <div class="form-check">
-                                    <input type="radio" name="priceList" value="general" id="general" class="form-check-input" checked />
-                                    <label for="general" class="form-check-label">General</label>
+                                    <input type="radio" id="priceGeneral" name="priceList" value="general" class="form-check-input" />
+                                    <label for="priceGeneral" class="form-check-label">General</label>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="form-check">
-                                    <input type="radio" name="priceList" value="confection" id="confection" class="form-check-input" />
-                                    <label for="confection" class="form-check-label">Confection</label>
+                                    <input type="radio" id="priceConfection" name="priceList" value="confection" class="form-check-input" />
+                                    <label for="priceConfection" class="form-check-label">Confection</label>
                                 </div>
                             </li>
                         </ul>
                     </div>
+
+                    <!-- Sale Price -->
                     <div class="p-2">
                         <h5 class="font-size-small">Sale Price</h5>
                         <ul class="list-group">
@@ -200,7 +183,7 @@
                             </li>
                         </ul>
                     </div>
-
+                    <!-- Currency -->
                     <div class="p-2">
                         <h5 class="font-size-small">Currency</h5>
                         <ul class="list-group">
@@ -218,14 +201,11 @@
                             </li>
                         </ul>
                     </div>
-
-
                 </div>
                 <div class="filter-btn-container">
                     <button type="submit" class="btn btn-primary btn-custom">Filter</button>
                     <button type="reset" class="btn btn-secondary btn-custom">Reset</button>
                 </div>
-
             </form>
         </div>
     </div>
@@ -246,29 +226,57 @@
             document.getElementById("myNav").style.width = "0";
             document.getElementById("mainContent").style.marginRight = "0";
         }
-        function applyFilter() {
-            var domesticCheckbox = document.getElementById('domesticFilter');
-            var exportCheckbox = document.getElementById('exportFilter');
-            var rows = document.querySelectorAll('#qualityTable tbody tr');
 
-            rows.forEach(row => {
-                var domesticPriceCell = row.querySelector('td:nth-child(11)');
-                var exportPriceCell = row.querySelector('td:nth-child(12)');
+        function saveFilters() {
+            const checkboxes = document.querySelectorAll('#filterForm input[type="checkbox"]');
+            const radios = document.querySelectorAll('#filterForm input[type="radio"]');
+            const filterData = {};
 
-                if (domesticCheckbox.checked && !exportCheckbox.checked) {
-                    exportPriceCell.style.display = 'none';
-                    domesticPriceCell.style.display = '';
-                } else if (!domesticCheckbox.checked && exportCheckbox.checked) {
-                    domesticPriceCell.style.display = 'none';
-                    exportPriceCell.style.display = '';
-                } else {
-                    domesticPriceCell.style.display = '';
-                    exportPriceCell.style.display = '';
+            checkboxes.forEach(checkbox => {
+                filterData[checkbox.id] = checkbox.checked;
+            });
+
+            radios.forEach(radio => {
+                if (radio.checked) {
+                    filterData[radio.name] = radio.value;
                 }
             });
+
+            localStorage.setItem('filters', JSON.stringify(filterData));
         }
 
-        document.addEventListener('DOMContentLoaded', applyFilter);
+        function loadFilters() {
+            const filterData = JSON.parse(localStorage.getItem('filters'));
+
+            if (filterData) {
+                Object.keys(filterData).forEach(key => {
+                    const element = document.getElementById(key);
+                    if (element) {
+                        if (element.type === 'checkbox') {
+                            element.checked = filterData[key];
+                        } else if (element.type === 'radio' && element.value === filterData[key]) {
+                            element.checked = true;
+                        }
+                    }
+                });
+            }
+        }
+
+        function applyFilter() {
+            // Implement filter logic here
+        }
+
+        function resetFilters() {
+            localStorage.removeItem('filters');
+            loadFilters(); // Reload defaults
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFilters();
+            applyFilter();
+            document.getElementById('filterForm').addEventListener('change', saveFilters);
+            document.getElementById('filterForm').addEventListener('reset', resetFilters);
+        });
     </script>
     @RenderSection("Scripts", required: false)
 </body>

@@ -23,7 +23,8 @@
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.FabricCode).Distinct())
                         {
-            <option value="@item">@item</option>}
+            <option value="@item">@item</option>
+}
                     </select>
                 </div>
             </th>
@@ -36,7 +37,8 @@
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.QualityName).Distinct())
                         {
-            <option value="@item">@item</option>}
+            <option value="@item">@item</option>
+}
                     </select>
                 </div>
             </th>
@@ -48,7 +50,8 @@
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.QualityGroup).Distinct())
                         {
-            <option value="@item">@item</option>}
+            <option value="@item">@item</option>
+}
                     </select>
                 </div>
             </th>
@@ -117,7 +120,8 @@
     <td class="@GetQualitiesCssClass(item.Qualities)">
         @Html.DisplayFor(modelItem => item.ExportPrice)
     </td>
-</tr>}
+</tr>
+}
     </tbody>
 </table>
 <script>
@@ -254,9 +258,6 @@
         });
     });
 </script>
-
-
-
 @functions { public string GetQualityClassCssClass(string qualityClass)
     {
         switch (qualityClass?.ToLower())
