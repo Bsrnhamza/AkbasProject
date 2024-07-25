@@ -62,30 +62,22 @@ namespace TestingAkbas.Controllers
 
         // POST: Fabrics/ExportVisibleToExcel
         [HttpPost]
-        public async Task<IActionResult> ExportVisibleToExcel([FromBody] List<List<string>> data)
+        public async Task<IActionResult> ExportVisibleToExcel([FromBody] ExportRequest request)
         {
             using (var package = new ExcelPackage())
             {
                 var worksheet = package.Workbook.Worksheets.Add("Visible Fabrics");
 
                 // Başlıkları yazma
-                worksheet.Cells[1, 1].Value = "Quality Class";
-                worksheet.Cells[1, 2].Value = "Fabric Code";
-                worksheet.Cells[1, 3].Value = "Qualities";
-                worksheet.Cells[1, 4].Value = "Quality Name";
-                worksheet.Cells[1, 5].Value = "Quality Group";
-                worksheet.Cells[1, 6].Value = "Quality Composition";
-                worksheet.Cells[1, 7].Value = "Pattern Type";
-                worksheet.Cells[1, 8].Value = "Width";
-                worksheet.Cells[1, 9].Value = "Weight";
-                worksheet.Cells[1, 10].Value = "Raw Fabric Price";
-                worksheet.Cells[1, 11].Value = "Domestic Price";
-                worksheet.Cells[1, 12].Value = "Export Price";
+                for (int i = 0; i < request.Headers.Count; i++)
+                {
+                    worksheet.Cells[1, i + 1].Value = request.Headers[i];
+                }
 
                 // İçeriği yazma
-                for (int i = 0; i < data.Count; i++)
+                for (int i = 0; i < request.Data.Count; i++)
                 {
-                    var rowData = data[i];
+                    var rowData = request.Data[i];
                     for (int j = 0; j < rowData.Count; j++)
                     {
                         worksheet.Cells[i + 2, j + 1].Value = rowData[j];
@@ -93,8 +85,8 @@ namespace TestingAkbas.Controllers
                 }
 
                 // Stil ayarları
-                worksheet.Cells[1, 1, 1, 12].Style.Font.Bold = true;
-                worksheet.Cells.AutoFitColumns(0); // Sütun genişliklerini otomatik ayarlar
+                worksheet.Cells[1, 1, 1, request.Headers.Count].Style.Font.Bold = true;
+                worksheet.Cells.AutoFitColumns();
 
                 var stream = new MemoryStream();
                 package.SaveAs(stream);
@@ -103,6 +95,7 @@ namespace TestingAkbas.Controllers
                 return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "VisibleFabrics.xlsx");
             }
         }
+
 
         // GET: Fabrics/Details/5
         public async Task<IActionResult> Details(int? id)

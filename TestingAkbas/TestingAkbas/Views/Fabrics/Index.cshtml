@@ -18,7 +18,7 @@
             <th>
                 Fabric Code
                 <div class="filter-section">
-                    <label for="fabricCodeFilter" class="sr-only">Filter by Fabric Code</label>
+                    <label for="fabricCodeFilter" class="sr-only"></label>
                     <select id="fabricCodeFilter">
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.FabricCode).Distinct())
@@ -32,7 +32,7 @@
             <th>
                 Quality Name
                 <div class="filter-section">
-                    <label for="qualityNameFilter" class="sr-only">Filter by Quality Name</label>
+                    <label for="qualityNameFilter" class="sr-only"></label>
                     <select id="qualityNameFilter">
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.QualityName).Distinct())
@@ -45,7 +45,7 @@
             <th>
                 Quality Group
                 <div class="filter-section">
-                    <label for="qualityGroupFilter" class="sr-only">Filter by Quality Group</label>
+                    <label for="qualityGroupFilter" class="sr-only"></label>
                     <select id="qualityGroupFilter">
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.QualityGroup).Distinct())
@@ -189,8 +189,7 @@
             });
         }
 
-        function exportVisibleDataToExcel() { // Excel'e aktarma işlemi burada başlar
-            // Başlıkları ve verileri topla
+        function exportVisibleDataToExcel() {
             var headers = [];
             var data = [];
 
@@ -220,12 +219,11 @@
                 url: '/Fabrics/ExportVisibleToExcel',
                 type: 'POST',
                 contentType: 'application/json',
-                data: JSON.stringify(data),
+                data: JSON.stringify({ headers: headers, data: data }), // headers ekle
                 xhrFields: {
                     responseType: 'blob'
                 },
                 success: function (response) {
-                    alert('Veri aktarımı başarılı');
                     var link = document.createElement('a');
                     link.href = window.URL.createObjectURL(response);
                     link.download = 'AkbasHoldingTable.xlsx';
@@ -258,6 +256,7 @@
         });
     });
 </script>
+
 @functions { public string GetQualityClassCssClass(string qualityClass)
     {
         switch (qualityClass?.ToLower())
