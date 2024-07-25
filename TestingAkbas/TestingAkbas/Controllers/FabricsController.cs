@@ -20,7 +20,6 @@ namespace TestingAkbas.Controllers
             _context = context;
         }
 
-        // GET: Fabrics
         public async Task<IActionResult> Index(string[] qualities, string[] qualityClasses)
         {
             var fabrics = _context.Fabrics.AsQueryable();
@@ -35,8 +34,31 @@ namespace TestingAkbas.Controllers
                 fabrics = fabrics.Where(f => qualityClasses.Contains(f.QualityClass));
             }
 
-            return View(await fabrics.ToListAsync());
+            // Özel sıralama listesi
+            var customOrder = new List<string>
+    {
+        "Viscose",
+        "Rayon",
+        "RynSignart",
+        "Cotton",
+        "Nylon",
+        "Polyester",
+        "PesDouble",
+        "Tencel",
+        "Modal",
+        "Linen",
+        "Jacquard",
+        "Mix",
+        "Yarndyed"
+    };
+
+            // Verileri özel sıraya göre sıralama
+            var orderedFabrics = await fabrics.ToListAsync();
+            orderedFabrics = orderedFabrics.OrderBy(f => customOrder.IndexOf(f.QualityClass)).ToList();
+
+            return View(orderedFabrics);
         }
+
 
         // POST: Fabrics/ExportVisibleToExcel
         [HttpPost]

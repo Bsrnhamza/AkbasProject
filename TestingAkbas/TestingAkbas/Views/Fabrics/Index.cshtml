@@ -185,7 +185,7 @@
             });
         }
 
-        function exportVisibleDataToExcel() {
+        function exportVisibleDataToExcel() { // Excel'e aktarma işlemi burada başlar
             // Başlıkları ve verileri topla
             var headers = [];
             var data = [];
@@ -221,13 +221,14 @@
                     responseType: 'blob'
                 },
                 success: function (response) {
+                    alert('Veri aktarımı başarılı');
                     var link = document.createElement('a');
                     link.href = window.URL.createObjectURL(response);
                     link.download = 'AkbasHoldingTable.xlsx';
                     link.click();
                 },
                 error: function () {
-                    alert('Veri aktarımı sırasında bir hata oluştu.');
+                    alert('Veri aktarımı sırasında bir hata oluştu');
                 }
             });
         }
