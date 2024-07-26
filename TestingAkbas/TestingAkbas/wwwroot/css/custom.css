@@ -1,7 +1,7 @@
-﻿/* Tablo içindeki tüm hücrelerin font boyutunu küçültür */
-.table td, .table th {
-    font-size: 11px; /* İstediğiniz font boyutunu buraya yazabilirsiniz */
+﻿.table td, .table th {
+    font-size: 11px;
 }
+
 
 /* Döviz Bilgileri */
 .currency-info-wrapper {
