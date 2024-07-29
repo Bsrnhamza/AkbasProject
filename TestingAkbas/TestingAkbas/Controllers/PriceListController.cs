@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TestingAkbas.Controllers
 {
-    public class PriceList : Controller
+    public class PriceListController : Controller
     {
         public IActionResult Index()
         {

@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            font-size: 8px;
+            font-size: 9px;
             margin: 0;
             padding: 0;
         }
@@ -23,14 +23,14 @@
             width: 700px;
             border-collapse: collapse;
             margin-top: 10px;
-            font-size: 8px; /* Adjust the font size as needed */
+            font-size: 11px; /* Adjust the font size as needed */
             position: relative; /* Ensure table is positioned relative to allow absolute positioning of the image */
         }
 
         th, td {
             border: 1px solid black;
             padding: 4px;
-            text-align: center; /* Verileri ortalamak için 'right' yerine 'center' */
+            text-align: center; /* Verileri ortalamak için */
         }
 
         th {
@@ -68,11 +68,13 @@
 
         .pricing div {
             width: 48%;
-        }
+            .pricing div {
+                width: 48%;
+            }
 
-        .pricing p {
-            margin: 2px 0;
-        }
+            .pricing p {
+                margin: 2px 0;
+            }
 
         .checkbox {
             display: flex;
@@ -101,13 +103,13 @@
             padding: 10px;
         }
 
-        .details p {
-            margin: 2px 0;
-        }
+            .details p {
+                margin: 2px 0;
+            }
 
-        .details p.summary {
-            font-weight: bold;
-        }
+                .details p.summary {
+                    font-weight: bold;
+                }
 
         /* Image positioning */
         .table-image {
@@ -130,9 +132,9 @@
             cursor: pointer;
         }
 
-        .print-button:hover {
-            background-color: #0056b3;
-        }
+            .print-button:hover {
+                background-color: #0056b3;
+            }
     </style>
     <script>
         function printPage() {
@@ -148,7 +150,7 @@
             <h6>PROFORMA MALİYET</h6>
             <h7>IMPI611 VISCOSE VOILE 80/1</h7>
             <p>Düz Boya Zemin: SİYAH</p>
-            <p>20.03.2024 tarihindeki KURLAR: ₺ 32.50 $ 34.70 €/$: 1.0677</p>
+            <p style="font-size: 12px;">20.03.2024 tarihindeki KURLAR: $ 32.50 € 34.70 €/$: 1.0677</p>
         </div>
         <table>
             <thead>
@@ -166,8 +168,8 @@
                 </tr>
                 <tr>
                     <td class="left-align">Ham Kumaş Maliyeti</td>
-                    <td class="right-align">1,25 $/mt</td>
-                    <td class="right-align">1,25 $/mt</td>
+                    <td style="color:red" class="right-align">1,25 $/mt</td>
+                    <td style="color:red" class="right-align">1,25 $/mt</td>
                 </tr>
             </tbody>
         </table>
@@ -189,140 +191,131 @@
             </tr>
             <tr>
                 <td class="left-align">HAM AÇMA</td>
+                <td></td>
                 <td>0.0373</td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>0.04$/mt</td>
+                <td>0.4$/mt</td>
                 <td></td>
             </tr>
             <tr>
                 <td class="left-align">GAZE (Combi)</td>
+                <td></td>
                 <td>0.0150</td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>0.02$/mt</td>
+                <td>0.02$/mt</td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td class="left-align">BOYAMA (Jet)(600)</td>
-                <td>0.3263</td>
+                <td></td>
+                <td>0.2363</td>
                 <td>0.0499</td>
-                <td>0.3762</td>
-                <td></td>
-                <td></td>
+                <td>0.29$/mt</td>
+                <td>0.29$/mt</td>
                 <td></td>
             </tr>
             <tr>
                 <td class="left-align">KURUTMA (Ram)</td>
-                <td></td>
-                <td>0.0499</td>
-                <td>0.0499</td>
-                <td></td>
-                <td></td>
+                <td>30</td>
+                <td>0.0425</td>
+                <td>0.4$/mt</td>
+                <td>0.4$/mt</td>
+                <td>0.49$/mt</td>
                 <td></td>
             </tr>
             <tr>
                 <td class="left-align">FINISH APRE (Ram)</td>
-                <td>0.0505</td>
-                <td>0.0505</td>
-                <td>0.1010</td>
-                <td></td>
-                <td></td>
+                <td>25</td>
+                <td>0.0510</td>
+                <td>0.0200</td>
+                <td>0.07$/mt</td>
+                <td>0.07$/mt</td>
                 <td></td>
             </tr>
             <tr>
                 <td class="left-align">KALİTE KONTROL</td>
-                <td>0.0200</td>
+                <td></td>
+                <td>0.0398</td>
+                <td></td>
+                <td>0.4$/mt</td>
+                <td>0.4$/mt</td>
+                <td style="color: red;">0.48$/mt</td>
+            </tr>
+            <tr>
+                <td class="left-align">DÜZ BOYA ÇEKME</td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+                <td>0.18$/mt</td>
+                <td>0.18$/mt</td>
                 <td></td>
             </tr>
             <tr>
                 <td class="summary left-align">DÜZ BOYA MALİYETİ</td>
+                <td class="summary"></td>
                 <td class="summary">0.4219</td>
-                <td class="summary">0.0999</td>
-                <td class="summary">0.5218</td>
-                <td></td>
-                <td></td>
+                <td class="summary">0.0699</td>
+                <td style="color: red;">0.62$/mt</td>
+                <td style="color: red;">0.60$/mt</td>
                 <td></td>
             </tr>
             <tr>
-                <td class="left-align">DÜZ BOYA ÇEKME %14 %12</td>
+                <td class="left-align">STOK + A1 + TOPBAŞI</td>
                 <td></td>
                 <td></td>
                 <td></td>
+                <td>0.03$/mt</td>
+                <td>0.03$/mt</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="left-align">KUMAŞ DAHİL DÜZ BOYA MALİYETİ</td>
                 <td></td>
                 <td></td>
+                <td></td>
+                <td style="color:red">0.03$/mt</td>
+                <td style="color:red">0.03$/mt</td>
                 <td></td>
             </tr>
             <tr>
                 <th class="left-align" colspan="7">SABİT MALİYETLER</th>
             </tr>
             <tr>
-                <td class="left-align">STOK + AT + TOPRAŞI</td>
-                <td>1.5%</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
                 <td class="left-align">HAZIRLIK GRUBU MALİYETİ</td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="left-align">PAZARLAMA GİDERİ %7.0</td>
-                <td>0.03 $/mt</td>
-                <td></td>
-                <td>0.03 $/mt</td>
-                <td></td>
-                <td></td>
+                <td>0.02$/mt</td>
+                <td>0.02$/mt</td>
                 <td></td>
             </tr>
             <tr>
-                <td class="left-align">GENEL YÖNETİM GİDERİ %3.0</td>
-                <td>0.01 $/mt</td>
+                <td class="left-align">PAZARLAMA GİDERİ</td>
+                <td>% 7,0</td>
+                <td>% 7,0</td>
                 <td></td>
-                <td>0.01 $/mt</td>
+                <td>0.03$/mt</td>
+                <td>0.03$/mt</td>
                 <td></td>
+            </tr>
+            <tr>
+                <td class="left-align">GENEL YÖNETİM GİDERİ</td>
+                <td>% 3,0</td>
+                <td>% 3,0</td>
                 <td></td>
+                <td>0.01$/mt</td>
+                <td>0.01$/mt</td>
                 <td></td>
             </tr>
             <tr>
                 <td class="summary left-align">BİTMİŞ KUMAŞ MALİYETİ</td>
-                <td class="summary">2.18 $/mt</td>
-                <td></td>
-                <td class="summary">2.18 $/mt</td>
                 <td></td>
                 <td></td>
                 <td></td>
-            </tr>
-            <tr>
-                <td class="summary left-align">İÇ PİYASA</td>
-                <td class="summary">1.30 $/mt</td>
-                <td></td>
-                <td class="summary">1.30 $/mt</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="summary left-align">İHRACAT</td>
-                <td class="summary">1.30 $/mt</td>
-                <td></td>
-                <td class="summary">1.30 $/mt</td>
-                <td></td>
-                <td></td>
+                <td style="color: red;" class="summary">2.18 $/mt</td>
+                <td style="color: red;" class="summary">2.18 $/mt</td>
                 <td></td>
             </tr>
         </table>
@@ -334,20 +327,27 @@
         <div class="pricing">
             <div>
                 <p class="summary">SATIŞ FİYATI [LİSTE]</p>
-                <p>3.05 $/mt</p>
-                <p>2.86 $/mt</p>
+                <p style="color: red;">3.05 $/mt</p>
+                <p style="color: red;">2.86 £/mt</p>
             </div>
             <div>
                 <p class="summary">KAR ORANI [LİSTE]</p>
-                <p>40.2 %</p>
+                <p style="color: red;">40.2 %</p>
+                <p style="color: red;">40.2 %</p>
             </div>
         </div>
 
         <div class="pricing">
             <div>
                 <p>VADELİ FİYAT</p>
-                <p>3.0500</p>
+                <select>
+                    <option value="Pesin">Peşin</option>
+                    <option value="30gün">30 Gün (1.5%)</option>
+                    <option value="60gün">60 Gün (3.5%)</option>
+                    <option value="90gün">90 Gün (4.5%)</option>
+                </select>
             </div>
+
             <div>
                 <p>Proforma Geçerlilik Tarihi: 26.07.2024</p>
                 <p>Kullanıcı: hamza</p>

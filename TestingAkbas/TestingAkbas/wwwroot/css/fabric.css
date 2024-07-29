@@ -51,7 +51,7 @@ body {
 /* Navbar Sabitleme Stili */
 .navbar {
     position: fixed;
-    top: 0;
+    top: 10px;
     left: 0;
     width: 100%;
     z-index: 10;
