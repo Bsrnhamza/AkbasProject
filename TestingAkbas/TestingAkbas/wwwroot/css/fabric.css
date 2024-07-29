@@ -48,6 +48,7 @@ body {
 }
 
 /* Navbar Sabitleme Stili */
+/* Navbar Sabitleme Stili */
 .navbar {
     position: fixed;
     top: 0;
@@ -63,6 +64,7 @@ body {
     justify-content: space-between; /* Öğeleri hizalar */
     align-items: center; /* Öğeleri ortalar */
     padding: 0 20px; /* Sağdan ve soldan padding */
+    margin-top: -10px; /* Navbar'ı biraz aşağıya taşır */
 }
 
     /* Navbar içindeki elemanlar için görünürlük ayarları */
@@ -72,13 +74,16 @@ body {
         color: #333; /* Metin rengini koyu gri yapar */
         border: none; /* Kenarları kaldırır */
         font-size: 0.875rem; /* Daha küçük font boyutu ile ince görünüm sağlar */
+        margin-top: -5px; /* Üstten yukarı taşır */
     }
 
 /* Navbar içindeki elemanlar arasına boşluk ekler */
 .navbar-nav {
     display: flex; /* Flexbox düzenini aktifleştirir */
     gap: 15px; /* Öğeler arası boşluk */
+    margin-top: -5px; /* Menü öğelerini yukarı taşır */
 }
+
 /* Open Button */
 .openbtn {
     position: absolute; /* Mutlak konum */

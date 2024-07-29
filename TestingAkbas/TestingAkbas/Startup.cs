@@ -53,7 +53,7 @@ namespace TestingAkbas
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Fabrics}/{action=Index}/{id?}");
+                    pattern: "{controller=PriceList}/{action=Index}/{id?}");
             });
         }
     }
