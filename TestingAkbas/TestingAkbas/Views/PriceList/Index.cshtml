@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Proforma Maliyet</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            font-size: 9px;
+            font-size: 11px;
             margin: 0;
             padding: 0;
         }
@@ -20,10 +21,10 @@
         }
 
         table {
-            width: 700px;
+            width: calc(100% - 120px); /* Adjust width to make room for the image */
             border-collapse: collapse;
             margin-top: 10px;
-            font-size: 11px; /* Adjust the font size as needed */
+            font-size: 15px; /* Adjust the font size as needed */
             position: relative; /* Ensure table is positioned relative to allow absolute positioning of the image */
         }
 
@@ -36,7 +37,6 @@
         th {
             background-color: #f2f2f2;
         }
-
 
         .left-align {
             text-align: left;
@@ -66,8 +66,6 @@
             justify-content: space-between;
         }
 
-        .pricing div {
-            width: 48%;
             .pricing div {
                 width: 48%;
             }
@@ -114,8 +112,8 @@
         /* Image positioning */
         .table-image {
             position: absolute;
-            top: 10px;
-            left: 600px;
+            top: 40px;
+            right: 210px; /* Position the image to the right of the container */
             width: 100px; /* Adjust width as needed */
             height: auto; /* Maintain aspect ratio */
         }
@@ -152,6 +150,11 @@
             <p>Düz Boya Zemin: SİYAH</p>
             <p style="font-size: 12px;">20.03.2024 tarihindeki KURLAR: $ 32.50 € 34.70 €/$: 1.0677</p>
         </div>
+
+        <!-- Image for table -->
+        <img src="~/img/akbasFont.jpg" class="table-image">
+
+        <!-- Tables -->
         <table>
             <thead>
                 <tr>
@@ -174,12 +177,8 @@
             </tbody>
         </table>
 
-        <!-- Image for table -->
-        <img src="~/img/akbasFont.jpg" class="table-image">
-
         <!-- Mevcut Tablo -->
         <table>
-
             <tr>
                 <th class="left-align">Değişken Maliyetler</th>
                 <th class="left-align">Hız<br /> mt/dk</th>
@@ -359,8 +358,11 @@
             <label for="karOranBelirle">Kar Oran Belirle</label>
         </div>
 
-        <!-- Print button -->
-        <button class="print-button" onclick="printPage()">Yazdır</button>
+        <!-- Print button with Font Awesome icon -->
+        <button class="print-button" onclick="printPage()">
+            <i class="fas fa-print"></i>
+        </button>
+
     </div>
 </body>
 </html>

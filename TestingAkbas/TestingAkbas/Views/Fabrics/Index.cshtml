@@ -23,7 +23,7 @@
                     <select id="fabricCodeFilter">
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.FabricCode).Distinct())
-                        {
+                        { <br />
             <option value="@item">@item</option>}
                     </select>
                 </div>
@@ -36,7 +36,7 @@
                     <select id="qualityNameFilter">
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.QualityName).Distinct())
-                        {
+                        {<br />
             <option value="@item">@item</option>}
                     </select>
                 </div>
@@ -48,7 +48,7 @@
                     <select id="qualityGroupFilter">
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.QualityGroup).Distinct())
-                        {
+                        {<br />
             <option value="@item">@item</option>}
                     </select>
                 </div>
