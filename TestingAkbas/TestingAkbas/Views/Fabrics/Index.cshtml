@@ -1,17 +1,23 @@
 ﻿@model IEnumerable<TestingAkbas.Models.Fabric>
-@{ ViewData["Title"] = "";
-    Layout = "_FabricsLayout"; }
+@{
+    ViewData["Title"] = "";
+    Layout = "_FabricsLayout";
+}
 
 @section Styles {
     <link rel="stylesheet" href="~/css/custom.css" />
 }
+
 <button type="button" id="exportButton" class="btn btn-outline-success">Export to Excel</button>
+
 <div class="currency-info-wrapper">
     <div class="currency-info">
         EURO: 34, 7000 TL&nbsp;&nbsp;&nbsp;&nbsp;USD: 32, 5000 TL&nbsp;&nbsp;&nbsp;&nbsp;GBP: 41, 9100 TL&nbsp;&nbsp;&nbsp;&nbsp;€/$: 1, 0677&nbsp;&nbsp;&nbsp;&nbsp;GBP/$: 1, 2700
     </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <table class="table table-hover" id="fabricTable">
     <thead>
         <tr>
@@ -20,13 +26,7 @@
                 Fabric Code
                 <div class="filter-section">
                     <label for="fabricCodeFilter" class="sr-only"></label>
-                    <select id="fabricCodeFilter">
-                        <option value="">All</option>
-                        @foreach (var item in Model.Select(x => x.FabricCode).Distinct().OrderBy(x => x))
-                        {
-                            <option value="@item">@item</option>
-                        }
-                    </select>
+                    <input type="text" id="fabricCodeSearch" placeholder="Search Fabric Code">
                 </div>
             </th>
             <th>Qualities</th>
@@ -34,30 +34,16 @@
                 Quality Name
                 <div class="filter-section">
                     <label for="qualityNameFilter" class="sr-only"></label>
-                    <select id="qualityNameFilter">
-                        <option value="">All</option>
-                        @foreach (var item in Model.Select(x => x.QualityName).Distinct().OrderBy(x => x))
-                        {
-                            <option value="@item">@item</option>
-                        }
-                    </select>
+                    <input type="text" id="qualityNameSearch" placeholder="Search Quality Name">
                 </div>
             </th>
             <th>
                 Quality Group
                 <div class="filter-section">
                     <label for="qualityGroupFilter" class="sr-only"></label>
-                    <select id="qualityGroupFilter">
-                        <option value="">All</option>
-                        @foreach (var item in Model.Select(x => x.QualityGroup).Distinct().OrderBy(x => x))
-                        {
-                            <option value="@item">@item</option>
-                        }
-                    </select>
+                    <input type="text" id="qualityGroupSearch" placeholder="Search Quality Group">
                 </div>
             </th>
-            <th>Quality Composition</th>
-            <th>Pattern Type</th>
             <th>
                 Width
                 <div class="filter-section">
@@ -101,12 +87,6 @@
                     @Html.DisplayFor(modelItem => item.QualityGroup)
                 </td>
                 <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.QualityComposition)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.PatternType)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
                     @Html.DisplayFor(modelItem => item.Width)
                 </td>
                 <td class="@GetQualitiesCssClass(item.Qualities)">
@@ -125,12 +105,13 @@
         }
     </tbody>
 </table>
+
 <script>
     $(document).ready(function () {
         function filterTable() {
-            var fabricCode = $('#fabricCodeFilter').val().toLowerCase();
-            var qualityName = $('#qualityNameFilter').val().toLowerCase();
-            var qualityGroup = $('#qualityGroupFilter').val().toLowerCase();
+            var fabricCodeSearch = $('#fabricCodeSearch').val().toLowerCase();
+            var qualityNameSearch = $('#qualityNameSearch').val().toLowerCase();
+            var qualityGroupSearch = $('#qualityGroupSearch').val().toLowerCase();
             var minWidth = parseFloat($('#minWidth').val()) || -Infinity;
             var maxWidth = parseFloat($('#maxWidth').val()) || Infinity;
             var minWeight = parseFloat($('#minWeight').val()) || -Infinity;
@@ -138,18 +119,22 @@
 
             $('#fabricTable tbody tr').each(function () {
                 var row = $(this);
-                var rowFabricCode = row.data('fabric-code').toLowerCase();
-                var rowQualityName = row.data('quality-name').toLowerCase();
-                var rowQualityGroup = row.data('quality-group').toLowerCase();
-                var rowWidth = parseFloat(row.find('td').eq(7).text()) || 0;
-                var rowWeight = parseFloat(row.find('td').eq(8).text()) || 0;
+                var rowFabricCode = row.find('td').eq(1).text().toLowerCase();
+                var rowQualityName = row.find('td').eq(3).text().toLowerCase();
+                var rowQualityGroup = row.find('td').eq(4).text().toLowerCase();
+                var rowWidth = parseFloat(row.find('td').eq(5).text()) || 0;
+                var rowWeight = parseFloat(row.find('td').eq(6).text()) || 0;
 
                 var isWidthInRange = (rowWidth >= minWidth) && (rowWidth <= maxWidth);
                 var isWeightInRange = (rowWeight >= minWeight) && (rowWeight <= maxWeight);
 
-                if ((fabricCode === "" || rowFabricCode === fabricCode) &&
-                    (qualityName === "" || rowQualityName === qualityName) &&
-                    (qualityGroup === "" || rowQualityGroup === qualityGroup) &&
+                var matchesFabricCode = (fabricCodeSearch === "" || rowFabricCode.includes(fabricCodeSearch));
+                var matchesQualityName = (qualityNameSearch === "" || rowQualityName.includes(qualityNameSearch));
+                var matchesQualityGroup = (qualityGroupSearch === "" || rowQualityGroup.includes(qualityGroupSearch));
+
+                if (matchesFabricCode &&
+                    matchesQualityName &&
+                    matchesQualityGroup &&
                     isWidthInRange &&
                     isWeightInRange) {
                     row.show();
@@ -159,97 +144,13 @@
             });
         }
 
-        function updateColumnVisibility() {
-            var filterType = $('input[name="filterType"]:checked').val();
-            var exportPriceColIndex = 11; // 12. sütun (index 11)
-            var domesticPriceColIndex = 10; // 11. sütun (index 10)
-
-            // Başlıkların görünürlüğünü güncelle
-            $('#fabricTable thead th').each(function (index) {
-                if (filterType === 'Domestic') {
-                    $(this).toggle(index !== exportPriceColIndex);
-                } else if (filterType === 'Export') {
-                    $(this).toggle(index !== domesticPriceColIndex);
-                } else {
-                    $(this).show(); // Her şey görünür
-                }
-            });
-
-            // Hücrelerin görünürlüğünü güncelle
-            $('#fabricTable tbody tr').each(function () {
-                var row = $(this);
-                row.find('td').each(function (index) {
-                    if (filterType === 'Domestic') {
-                        $(this).toggle(index !== exportPriceColIndex);
-                    } else if (filterType === 'Export') {
-                        $(this).toggle(index !== domesticPriceColIndex);
-                    } else {
-                        $(this).show(); // Her şey görünür
-                    }
-                });
-            });
-        }
-
-        function exportVisibleDataToExcel() {
-            var headers = [];
-            var data = [];
-
-            // Başlıkları topla
-            $('#fabricTable thead th').each(function () {
-                if ($(this).is(':visible')) {
-                    headers.push($(this).text().trim());
-                }
-            });
-
-            // Verileri topla
-            $('#fabricTable tbody tr').each(function () {
-                var row = $(this);
-                if (row.is(':visible')) {
-                    var rowData = [];
-                    row.find('td').each(function () {
-                        if ($(this).is(':visible')) {
-                            rowData.push($(this).text().trim());
-                        }
-                    });
-                    data.push(rowData);
-                }
-            });
-
-            // Excel'e aktarma işlemi için AJAX isteği yap
-            $.ajax({
-                url: '/Fabrics/ExportVisibleToExcel',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({ headers: headers, data: data }), // headers ekle
-                xhrFields: {
-                    responseType: 'blob'
-                },
-                success: function (response) {
-                    var link = document.createElement('a');
-                    link.href = window.URL.createObjectURL(response);
-                    link.download = 'AkbasHoldingTable.xlsx';
-                    link.click();
-                },
-                error: function () {
-                    alert('Veri aktarımı sırasında bir hata oluştu');
-                }
-            });
-        }
-
         // Olay dinleyicileri
-        $('#fabricCodeFilter, #qualityNameFilter, #qualityGroupFilter, #minWidth, #maxWidth, #minWeight, #maxWeight').on('change', function () {
+        $('#fabricCodeSearch, #qualityNameSearch, #qualityGroupSearch, #minWidth, #maxWidth, #minWeight, #maxWeight').on('input', function () {
             filterTable();
-            updateColumnVisibility();
         });
 
-        $('input[name="filterType"]').on('change', function () {
-            filterTable();
-            updateColumnVisibility();
-        });
-
-        // Sayfa yüklendiğinde uygun sütunları göster/gizle
+        // Sayfa yüklendiğinde filtreleme işlemini yap
         filterTable();
-        updateColumnVisibility();
 
         // Export to Excel butonuna tıklama olayını yakala
         $('#exportButton').on('click', function () {
@@ -258,7 +159,8 @@
     });
 </script>
 
-@functions { public string GetQualityClassCssClass(string qualityClass)
+@functions {
+    public string GetQualityClassCssClass(string qualityClass)
     {
         switch (qualityClass?.ToLower())
         {
@@ -302,4 +204,5 @@
             default:
                 return "";
         }
-    } }
+    }
+}

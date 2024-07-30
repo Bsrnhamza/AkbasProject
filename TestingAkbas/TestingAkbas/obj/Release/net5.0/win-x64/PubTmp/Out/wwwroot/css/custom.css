@@ -1,0 +1,65 @@
+﻿.table td {
+    font-size: 11px;
+    padding: 4px; /* Veri hücrelerindeki iç boşluğu azaltır */
+    line-height: 2.1; /* Satır yüksekliğini ayarlar */
+}
+
+.table th {
+    font-size: 11px;
+    padding: 8px; /* Başlık hücrelerindeki iç boşluk daha fazla olabilir */
+    line-height: 1.1; /* Başlık satır yüksekliği */
+}
+
+/* Döviz Bilgileri */
+.currency-info-wrapper {
+    display: flex;
+    justify-content: right; /* İçeriği yatay olarak ortalar */
+    overflow-x: auto; /* Yatay kaydırma çubuğunu gösterir */
+}
+
+.currency-info {
+    font-size: 10px; /* Yazı boyutunu 10 piksel olarak ayarlar */
+}
+
+    .currency-info p {
+        margin: 0; /* Paragraflar arasındaki dış boşluğu sıfırlar */
+        line-height: 1.2; /* Satır yüksekliğini daha sıkı bir hale getirir */
+    }
+
+/* Filtreleme Bölümü */
+.filter-section {
+    margin-top: 5px;
+}
+
+    .filter-section select {
+        margin-top: 5px;
+    }
+
+/* Input kutuları */
+#minWidth, #maxWidth, #minWeight, #maxWeight {
+    width: 47px; /* Genişliği küçültmek için */
+    padding: 5px; /* İç boşluk */
+    font-size: 10px; /* Yazı boyutu */
+}
+
+/* Select kutuları için stil ayarları */
+#fabricCodeFilter, #qualityNameFilter, #qualityGroupFilter {
+    width: 50px; /* Genişlik ayarı: Kutuların genişliğini ayarlar */
+    padding: 5px; /* İç boşluk ayarı: İçerik ile kutu kenarları arasındaki boşluk */
+    font-size: 12px; /* Yazı boyutu ayarı: Seçeneklerin yazı boyutunu ayarlar */
+    margin-bottom: 0px; /* Alt boşluk ayarı: Kutuların altındaki boşluk */
+}
+/* exportButtonButon Boyutlandırma */
+#exportButton {
+    font-size: 0.75rem; /* Küçük yazı boyutu */
+    padding: 0.25rem 0.5rem; /* İç boşlukları küçültür */
+    border-radius: 0.2rem; /* Köşe yuvarlama */
+    line-height: 1.2; /* Satır yüksekliği */
+}
+/* Tablonun başlık kısmını sabit hale getirir */
+#fabricTable thead th {
+    position: sticky;
+    top: 3rem; /* Sayfanın üst kısmına sabitler */
+    background-color: #fff; /* Başlık arka plan rengi */
+    z-index: 10; /* Üstte kalmasını sağlar */
+}
