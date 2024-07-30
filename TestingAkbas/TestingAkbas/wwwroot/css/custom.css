@@ -48,3 +48,10 @@
     border-radius: 0.2rem; /* Köşe yuvarlama */
     line-height: 1.2; /* Satır yüksekliği */
 }
+/* Tablonun başlık kısmını sabit hale getirir */
+#fabricTable thead th {
+    position: sticky;
+    top: 3rem; /* Sayfanın üst kısmına sabitler */
+    background-color: #fff; /* Başlık arka plan rengi */
+    z-index: 10; /* Üstte kalmasını sağlar */
+}

@@ -17,21 +17,20 @@
             width: 100%;
             margin: auto;
             padding: 20px;
-            position: relative; /* Relative position to control the absolute position of child elements */
+            position: relative;
         }
 
         table {
-            width: calc(100% - 120px); /* Adjust width to make room for the image */
+            width: calc(100% - 120px);
             border-collapse: collapse;
             margin-top: 10px;
-            font-size: 15px; /* Adjust the font size as needed */
-            position: relative; /* Ensure table is positioned relative to allow absolute positioning of the image */
+            font-size: 15px;
+            position: relative;
         }
 
         th, td {
-            border: 1px solid black;
             padding: 4px;
-            text-align: center; /* Verileri ortalamak için */
+            text-align: center;
         }
 
         th {
@@ -89,7 +88,6 @@
             margin-bottom: 20px;
         }
 
-        /* Style for positioning the summary and other details */
         .details {
             position: absolute;
             bottom: 20px;
@@ -109,16 +107,14 @@
                     font-weight: bold;
                 }
 
-        /* Image positioning */
         .table-image {
             position: absolute;
             top: 40px;
-            right: 210px; /* Position the image to the right of the container */
-            width: 100px; /* Adjust width as needed */
-            height: auto; /* Maintain aspect ratio */
+            right: 210px;
+            width: 100px;
+            height: auto;
         }
 
-        /* Print button style */
         .print-button {
             margin-top: 20px;
             padding: 10px;
@@ -133,6 +129,14 @@
             .print-button:hover {
                 background-color: #0056b3;
             }
+
+        .white-background {
+            background-color: white;
+        }
+
+        .header-background {
+            background-color: white;
+        }
     </style>
     <script>
         function printPage() {
@@ -142,7 +146,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- İç Piyasa ve İhracat Bilgileri Tablosu -->
         <div class="info-box">
             <p>26.07.2024 16:59</p>
             <h6>PROFORMA MALİYET</h6>
@@ -151,33 +154,29 @@
             <p style="font-size: 12px;">20.03.2024 tarihindeki KURLAR: $ 32.50 € 34.70 €/$: 1.0677</p>
         </div>
 
-        <!-- Image for table -->
         <img src="~/img/akbasFont.jpg" class="table-image">
 
-        <!-- Tables -->
         <table>
             <thead>
-                <tr>
-                    <th class="left-align"></th>
-                    <th class="left-align">İç Piyasa</th>
-                    <th class="left-align">İhracat</th>
+                <tr class="header-background">
+                    <th class="right-align header-background"></th>
+                    <th class="right-align header-background">İç Piyasa</th>
+                    <th class="left-align header-background">İhracat</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td class="left-align">Ham Kumaş Proforma Fiyatı</td>
                     <td class="right-align">1,25 $/mt</td>
-                    <td class="right-align">1,25 $/mt</td>
+                    <td class="left-align">1,25 $/mt</td>
                 </tr>
                 <tr>
                     <td class="left-align">Ham Kumaş Maliyeti</td>
                     <td style="color:red" class="right-align">1,25 $/mt</td>
-                    <td style="color:red" class="right-align">1,25 $/mt</td>
+                    <td style="color:red" class="left-align">1,25 $/mt</td>
                 </tr>
             </tbody>
         </table>
-
-        <!-- Mevcut Tablo -->
         <table>
             <tr>
                 <th class="left-align">Değişken Maliyetler</th>
@@ -358,7 +357,6 @@
             <label for="karOranBelirle">Kar Oran Belirle</label>
         </div>
 
-        <!-- Print button with Font Awesome icon -->
         <button class="print-button" onclick="printPage()">
             <i class="fas fa-print"></i>
         </button>

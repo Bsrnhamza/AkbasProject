@@ -5,7 +5,7 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/custom.css" />
 }
-<button type="button" id="exportButton" class="btn btn-outline-success ">Export to Excel</button>
+<button type="button" id="exportButton" class="btn btn-outline-success">Export to Excel</button>
 <div class="currency-info-wrapper">
     <div class="currency-info">
         EURO: 34, 7000 TL&nbsp;&nbsp;&nbsp;&nbsp;USD: 32, 5000 TL&nbsp;&nbsp;&nbsp;&nbsp;GBP: 41, 9100 TL&nbsp;&nbsp;&nbsp;&nbsp;€/$: 1, 0677&nbsp;&nbsp;&nbsp;&nbsp;GBP/$: 1, 2700
@@ -23,8 +23,10 @@
                     <select id="fabricCodeFilter">
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.FabricCode).Distinct())
-                        { <br />
-            <option value="@item">@item</option>}
+                        {
+                            <br />
+                            <option value="@item">@item</option>
+}
                     </select>
                 </div>
             </th>
@@ -36,8 +38,10 @@
                     <select id="qualityNameFilter">
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.QualityName).Distinct())
-                        {<br />
-            <option value="@item">@item</option>}
+                        {
+                            <br />
+                            <option value="@item">@item</option>
+}
                     </select>
                 </div>
             </th>
@@ -48,8 +52,10 @@
                     <select id="qualityGroupFilter">
                         <option value="">All</option>
                         @foreach (var item in Model.Select(x => x.QualityGroup).Distinct())
-                        {<br />
-            <option value="@item">@item</option>}
+                        {
+                            <br />
+                            <option value="@item">@item</option>
+}
                     </select>
                 </div>
             </th>
@@ -81,44 +87,45 @@
     <tbody>
         @foreach (var item in Model)
         {
-<tr data-fabric-code="@item.FabricCode" data-quality-name="@item.QualityName" data-quality-group="@item.QualityGroup">
-    <td class="@GetQualityClassCssClass(item.QualityClass)">
-        @Html.DisplayFor(modelItem => item.QualityClass)
-    </td>
-    <td class="@GetQualitiesCssClass(item.Qualities)">
-        @Html.DisplayFor(modelItem => item.FabricCode)
-    </td>
-    <td class="@GetQualitiesCssClass(item.Qualities)">
-        @Html.DisplayFor(modelItem => item.Qualities)
-    </td>
-    <td class="@GetQualitiesCssClass(item.Qualities)">
-        @Html.DisplayFor(modelItem => item.QualityName)
-    </td>
-    <td class="@GetQualitiesCssClass(item.Qualities)">
-        @Html.DisplayFor(modelItem => item.QualityGroup)
-    </td>
-    <td class="@GetQualitiesCssClass(item.Qualities)">
-        @Html.DisplayFor(modelItem => item.QualityComposition)
-    </td>
-    <td class="@GetQualitiesCssClass(item.Qualities)">
-        @Html.DisplayFor(modelItem => item.PatternType)
-    </td>
-    <td class="@GetQualitiesCssClass(item.Qualities)">
-        @Html.DisplayFor(modelItem => item.Width)
-    </td>
-    <td class="@GetQualitiesCssClass(item.Qualities)">
-        @Html.DisplayFor(modelItem => item.Weight)
-    </td>
-    <td class="@GetQualitiesCssClass(item.Qualities)">
-        @Html.DisplayFor(modelItem => item.RawFabricPrice)
-    </td>
-    <td class="@GetQualitiesCssClass(item.Qualities)">
-        @Html.DisplayFor(modelItem => item.DomesticPrice)
-    </td>
-    <td class="@GetQualitiesCssClass(item.Qualities)">
-        @Html.DisplayFor(modelItem => item.ExportPrice)
-    </td>
-</tr>}
+            <tr data-fabric-code="@item.FabricCode" data-quality-name="@item.QualityName" data-quality-group="@item.QualityGroup">
+                <td class="@GetQualityClassCssClass(item.QualityClass)">
+                    @Html.DisplayFor(modelItem => item.QualityClass)
+                </td>
+                <td class="@GetQualitiesCssClass(item.Qualities)">
+                    @Html.DisplayFor(modelItem => item.FabricCode)
+                </td>
+                <td class="@GetQualitiesCssClass(item.Qualities)">
+                    @Html.DisplayFor(modelItem => item.Qualities)
+                </td>
+                <td class="@GetQualitiesCssClass(item.Qualities)">
+                    @Html.DisplayFor(modelItem => item.QualityName)
+                </td>
+                <td class="@GetQualitiesCssClass(item.Qualities)">
+                    @Html.DisplayFor(modelItem => item.QualityGroup)
+                </td>
+                <td class="@GetQualitiesCssClass(item.Qualities)">
+                    @Html.DisplayFor(modelItem => item.QualityComposition)
+                </td>
+                <td class="@GetQualitiesCssClass(item.Qualities)">
+                    @Html.DisplayFor(modelItem => item.PatternType)
+                </td>
+                <td class="@GetQualitiesCssClass(item.Qualities)">
+                    @Html.DisplayFor(modelItem => item.Width)
+                </td>
+                <td class="@GetQualitiesCssClass(item.Qualities)">
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td class="@GetQualitiesCssClass(item.Qualities)">
+                    @Html.DisplayFor(modelItem => item.RawFabricPrice)
+                </td>
+                <td class="@GetQualitiesCssClass(item.Qualities)">
+                    @Html.DisplayFor(modelItem => item.DomesticPrice)
+                </td>
+                <td class="@GetQualitiesCssClass(item.Qualities)">
+                    @Html.DisplayFor(modelItem => item.ExportPrice)
+                </td>
+            </tr>
+}
     </tbody>
 </table>
 <script>
