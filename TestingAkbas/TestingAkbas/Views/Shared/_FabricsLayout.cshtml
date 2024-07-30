@@ -263,21 +263,25 @@
         }
 
         function applyFilter() {
-            // Implement filter logic here
+            // Formu otomatik olarak gönderin
+            document.getElementById('filterForm').submit();
         }
 
         function resetFilters() {
             localStorage.removeItem('filters');
-            loadFilters(); // Reload defaults
+            loadFilters(); // Varsayılan değerleri yeniden yükle
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             loadFilters();
-            applyFilter();
-            document.getElementById('filterForm').addEventListener('change', saveFilters);
+            document.getElementById('filterForm').addEventListener('change', () => {
+                saveFilters();
+                applyFilter(); // Checkbox değiştiğinde formu gönder
+            });
             document.getElementById('filterForm').addEventListener('reset', resetFilters);
         });
     </script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>
