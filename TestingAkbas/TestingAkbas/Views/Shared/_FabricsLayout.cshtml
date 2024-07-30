@@ -220,11 +220,13 @@
         function openNav() {
             document.getElementById("myNav").style.width = "250px";
             document.getElementById("mainContent").style.marginRight = "250px";
+            localStorage.setItem('navOpen', 'true'); // Menüyü açık olarak kaydet
         }
 
         function closeNav() {
             document.getElementById("myNav").style.width = "0";
             document.getElementById("mainContent").style.marginRight = "0";
+            localStorage.setItem('navOpen', 'false'); // Menüyü kapalı olarak kaydet
         }
 
         function saveFilters() {
@@ -274,6 +276,10 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             loadFilters();
+            const navOpen = localStorage.getItem('navOpen') === 'true';
+            if (navOpen) {
+                openNav();
+            }
             document.getElementById('filterForm').addEventListener('change', () => {
                 saveFilters();
                 applyFilter(); // Checkbox değiştiğinde formu gönder
@@ -281,6 +287,7 @@
             document.getElementById('filterForm').addEventListener('reset', resetFilters);
         });
     </script>
+
 
     @RenderSection("Scripts", required: false)
 </body>
