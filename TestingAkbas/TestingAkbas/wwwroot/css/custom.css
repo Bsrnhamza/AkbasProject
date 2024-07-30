@@ -1,5 +1,13 @@
-﻿.table td, .table th {
+﻿.table td {
     font-size: 11px;
+    padding: 4px; /* Veri hücrelerindeki iç boşluğu azaltır */
+    line-height: 2.1; /* Satır yüksekliğini ayarlar */
+}
+
+.table th {
+    font-size: 11px;
+    padding: 8px; /* Başlık hücrelerindeki iç boşluk daha fazla olabilir */
+    line-height: 1.1; /* Başlık satır yüksekliği */
 }
 
 /* Döviz Bilgileri */
