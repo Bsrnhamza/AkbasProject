@@ -1,8 +1,10 @@
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net5.0\win-x64\PubTmp\Out\TestingAkbas.exe
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\css\custom.css
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\css\fabric.css
+C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\css\login.css
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\css\site.css
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\favicon.ico
+C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\img\akbasClearFont.jpg
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\img\akbasFont.jpg
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\img\akbasIcon.jpg
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net5.0\win-x64\PubTmp\Out\wwwroot\js\site.js

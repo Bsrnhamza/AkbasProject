@@ -141,3 +141,4 @@ C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net5.0\win-x64\ref\TestingAkbas.dll
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net5.0\win-x64\TestingAkbas.pdb
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net5.0\win-x64\TestingAkbas.genruntimeconfig.cache
+C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Release\net5.0\win-x64\Razor\Views\Login\Index.cshtml.g.cs
