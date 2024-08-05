@@ -39,6 +39,18 @@
         .main-content {
             padding: 20px;
         }
+
+        .nav-item .btn-logout {
+            margin-left: 15px;
+            border: none;
+            background: none;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+            .nav-item .btn-logout:hover {
+                color: #0056b3;
+            }
     </style>
 </head>
 <body>
@@ -48,6 +60,18 @@
                 <a class="navbar-brand" href="/">
                     <img src="~/img/akbasIcon.jpg" alt="Icon" style="width: 28px; height: 28px; margin-right: 8px;">
                 </a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Çıkış düğmesi -->
+                        <li class="nav-item">
+                            <form method="post" asp-controller="Account" asp-action="Logout" class="form-inline">
+                                <button type="submit" class="btn-logout">
+                                    <img src="~/img/exitIcon.png" alt="Logout" style="width: 24px; height: 24px;">
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>

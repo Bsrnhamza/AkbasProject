@@ -10,18 +10,7 @@ namespace TestingAkbas.Data
         {
         }
 
-        public DbSet<Fabric> Fabrics { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Fabric>(entity =>
-            {
-                entity.Property(e => e.RawFabricPrice).HasColumnType("decimal(18,2)");
-                entity.Property(e => e.DomesticPrice).HasColumnType("decimal(18,2)");
-                entity.Property(e => e.ExportPrice).HasColumnType("decimal(18,2)");
-            });
-        }
+        public DbSet<Fabric> Fabrics { get; set; } // boyahana genel fiyat listesi
+        public DbSet<User> Users { get; set; } // Kullanıcı tablosu ile bağlantı
     }
 }

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TestingAkbas.Models;
 
 namespace TestingAkbas.Controllers
 {
+    [Authorize(Policy = "Admin")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
