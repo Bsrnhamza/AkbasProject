@@ -12,7 +12,7 @@ using TestingAkbas.Models;
 
 namespace TestingAkbas.Controllers
 {
- 
+    [Authorize(Policy = "Admin")]
     public class FabricsController : Controller
     {
         private readonly ApplicationDbContext _context;
