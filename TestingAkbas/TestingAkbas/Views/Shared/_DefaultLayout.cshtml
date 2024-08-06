@@ -13,70 +13,70 @@
 
         .main-content {
             padding: 20px;
-            margin-left: 80px; /* Sidebar genişliğine göre içerik alanını kaydırın */
+            margin-top: 60px; /* Navbar yüksekliğine göre içerik alanını kaydırın */
         }
 
-        .sidebar {
+        .navbar {
             position: fixed;
             top: 0;
-            left: 0; /* Sidebar solda kalacak şekilde konumlandırıldı */
-            height: 100%;
-            width: 50px; /* Sidebar genişliği */
-            background-color: #f8f9fa;
-            border-right: 1px solid #dee2e6;
+            left: 0;
+            width: 100%;
+            height: 50px; /* Navbar yüksekliği */
+            background-color: rgb(248, 249, 250); /* Saydam arka plan */
+            border-bottom: 1px solid #dee2e6;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px 0; /* Üst ve alt padding */
-            box-sizing: border-box;
+            justify-content: center; /* Butonları ortada hizalama */
+            align-items: center; /* Butonları yatayda ortalama */
+            z-index: 1050;
         }
 
         .button-container {
             display: flex;
-            flex-direction: column;
-            justify-content: center; /* Butonları ortada hizalama */
-            height: calc(100% - 40px); /* Üst ve alt paddingleri çıkarma */
-            width: 100%;
-            align-items: center; /* Butonları yatayda ortalama */
             gap: 80px; /* Butonlar arasındaki boşluk */
         }
 
-        .sidebar button {
+        .navbar button {
             width: 40px; /* Buton genişliği */
             height: 40px; /* Buton yüksekliği */
             text-align: center;
             line-height: 40px; /* Metnin dikey ortalanması */
-            border: 2px solid #000; /* Siyah renkte sınır */
-            background-color: transparent; /* Arka planı şeffaf yapma */
+            border: 2px solid #fff; /* Beyaz renkte sınır */
+            background-color: #fff; /* Beyaz arka plan */
             color: #000; /* Metin rengi siyah */
             border-radius: 4px; /* Kare butonlar */
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s; /* Renk geçişi */
         }
 
-            .sidebar button:hover {
+            .navbar button:hover {
                 background-color: #000; /* Hover efekti arka plan rengi siyah */
                 color: #fff; /* Hover efekti metin rengi beyaz */
             }
 
         .offcanvas {
             position: fixed;
-            top: 0;
-            left: 50px; /* Sidebar genişliği */
-            width: 200px;
-            height: 100vh; /* Tam ekran yüksekliği */
-            background-color: #fff;
-            border-left: 1px solid #dee2e6;
+            top: 50px; /* Navbarın hemen altı */
+            left: 0;
+            width: 100%;
+            height: 200px; /* Offcanvas yüksekliği */
+            background-color: rgba(255, 255, 255, 0.5); /* Saydam arka plan */
+            border-bottom: 1px solid #dee2e6;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transform: translateX(-100%); /* Başlangıçta gizli */
-            transition: transform 0.3s ease, opacity 0.3s ease; /* Geçiş efekti */
-            z-index: 1050; /* Menülerin butonlardan üstte olması için */
+            transform: translateY(-100%); /* Başlangıçta gizli */
             opacity: 0; /* Başlangıçta şeffaf */
-            display: none; /* Başlangıçta gizli */
+            transition: transform 0.5s ease, opacity 0.5s ease; /* Geçiş efekti */
+            pointer-events: none; /* Tıklanabilirliği kapalı */
         }
 
             .offcanvas.show {
-                transform: translateX(0); /* Menü görünür yap */
+                transform: translateY(0); /* Menü görünür yap */
+                opacity: 1; /* Menü görünür yap */
+                pointer-events: auto; /* Tıklanabilirliği aç */
+            }
+
+
+            .offcanvas.show {
+                transform: translateY(0); /* Menü görünür yap */
                 opacity: 1; /* Menü görünür yap */
                 display: block; /* Menü görünür yap */
             }
@@ -99,7 +99,7 @@
     </style>
 </head>
 <body>
-    <div class="sidebar">
+    <div class="navbar">
         <div class="button-container">
             <button type="button" onclick="toggleOffcanvas('offcanvas1')"><i class="fas fa-user"></i></button> <!-- Kafa iconu -->
             <button type="button" onclick="toggleOffcanvas('offcanvas2')"><i class="fas fa-industry"></i></button> <!-- Fabrika iconu -->
@@ -115,51 +115,41 @@
     <!-- Offcanvas Menüler -->
     <div class="offcanvas" id="offcanvas1">
         <div class="offcanvas-header">
-            <h5>Offcanvas 1</h5>
             <button type="button" class="offcanvas-close" onclick="toggleOffcanvas('offcanvas1')">&times;</button>
         </div>
         <div class="offcanvas-body">
-            İçerik 1
         </div>
     </div>
 
     <div class="offcanvas" id="offcanvas2">
         <div class="offcanvas-header">
-            <h5>Offcanvas 2</h5>
             <button type="button" class="offcanvas-close" onclick="toggleOffcanvas('offcanvas2')">&times;</button>
         </div>
         <div class="offcanvas-body">
-            İçerik 2
         </div>
     </div>
 
     <div class="offcanvas" id="offcanvas3">
         <div class="offcanvas-header">
-            <h5>Offcanvas 3</h5>
             <button type="button" class="offcanvas-close" onclick="toggleOffcanvas('offcanvas3')">&times;</button>
         </div>
         <div class="offcanvas-body">
-            İçerik 3
         </div>
     </div>
 
     <div class="offcanvas" id="offcanvas4">
         <div class="offcanvas-header">
-            <h5>Offcanvas 4</h5>
             <button type="button" class="offcanvas-close" onclick="toggleOffcanvas('offcanvas4')">&times;</button>
         </div>
         <div class="offcanvas-body">
-            İçerik 4
         </div>
     </div>
 
     <div class="offcanvas" id="offcanvas5">
         <div class="offcanvas-header">
-            <h5>Offcanvas 5</h5>
             <button type="button" class="offcanvas-close" onclick="toggleOffcanvas('offcanvas5')">&times;</button>
         </div>
         <div class="offcanvas-body">
-            İçerik 5
         </div>
     </div>
 
@@ -178,6 +168,7 @@
                 offcanvas.classList.add('show');
             }
         }
+
     </script>
 </body>
 </html>

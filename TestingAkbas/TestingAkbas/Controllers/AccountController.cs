@@ -53,7 +53,7 @@ public class AccountController : Controller
             new ClaimsPrincipal(claimsIdentity), authProperties);
 
         // Başarılı girişten sonra Fabrics/Index sayfasına yönlendir
-        return RedirectToAction("Index", "Fabrics");
+        return RedirectToAction("Index", "Home");
     }
 
     [HttpPost]
