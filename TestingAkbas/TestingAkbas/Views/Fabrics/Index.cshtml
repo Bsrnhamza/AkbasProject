@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<TestingAkbas.Models.Fabric>
 @{ ViewData["Title"] = "";
-                Layout = "_FabricsLayout"; }
+    Layout = "_FabricsLayout"; }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/custom.css" />
@@ -99,7 +99,8 @@
     <td class="@GetQualitiesCssClass(item.Qualities)">
         @Html.DisplayFor(modelItem => item.ExportPrice)
     </td>
-</tr>}
+</tr>
+}
     </tbody>
 </table>
 
@@ -140,6 +141,48 @@
                 }
             });
         }
+        function exportVisibleDataToExcel() {
+            // Filtrelenmiş verileri toplama
+            var headers = [];
+            var data = [];
+
+            // Başlıkları toplama
+            $('#fabricTable thead th').each(function () {
+                headers.push($(this).text().trim());
+            });
+
+            // Satırları toplama
+            $('#fabricTable tbody tr:visible').each(function () {
+                var rowData = [];
+                $(this).find('td').each(function () {
+                    rowData.push($(this).text().trim());
+                });
+                data.push(rowData);
+            });
+
+            // Excel export işlemini gerçekleştiren API çağrısı
+            $.ajax({
+                type: 'POST',
+                url: '/Fabrics/ExportVisibleToExcel', // API endpoint URL
+                contentType: 'application/json',
+                data: JSON.stringify({ Headers: headers, Data: data }),
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                success: function (response) {
+                    var url = window.URL.createObjectURL(new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
+                    var a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'VisibleFabrics.xlsx';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Export failed:', error);
+                }
+            });
+        }
 
         // Olay dinleyicileri
         $('#fabricCodeSearch, #qualityNameSearch, #qualityGroupSearch, #minWidth, #maxWidth, #minWeight, #maxWeight').on('input', function () {
@@ -158,47 +201,47 @@
 </script>
 
 @functions { public string GetQualityClassCssClass(string qualityClass)
-            {
-                switch (qualityClass?.ToLower())
-                {
-                    case "viscose":
-                        return "quality-class-viscose";
-                    case "rayon":
-                    case "rynsignart":
-                        return "quality-class-rayon";
-                    case "cotton":
-                        return "quality-class-cotton";
-                    case "nylon":
-                        return "quality-class-nylon";
-                    case "polyester":
-                    case "pesdouble":
-                        return "quality-class-polyester";
-                    case "tencel":
-                    case "modal":
-                        return "quality-class-tencel";
-                    case "linen":
-                        return "quality-class-linen";
-                    case "jacquard":
-                        return "quality-class-jacquard";
-                    case "mix":
-                    case "yarndyed":
-                        return "quality-class-mix";
-                    default:
-                        return "";
-                }
-            }
+    {
+        switch (qualityClass?.ToLower())
+        {
+            case "viscose":
+                return "quality-class-viscose";
+            case "rayon":
+            case "rynsignart":
+                return "quality-class-rayon";
+            case "cotton":
+                return "quality-class-cotton";
+            case "nylon":
+                return "quality-class-nylon";
+            case "polyester":
+            case "pesdouble":
+                return "quality-class-polyester";
+            case "tencel":
+            case "modal":
+                return "quality-class-tencel";
+            case "linen":
+                return "quality-class-linen";
+            case "jacquard":
+                return "quality-class-jacquard";
+            case "mix":
+            case "yarndyed":
+                return "quality-class-mix";
+            default:
+                return "";
+        }
+    }
 
-            public string GetQualitiesCssClass(string qualities)
-            {
-                switch (qualities?.ToLower())
-                {
-                    case "m":
-                        return "qualities-m";
-                    case "a":
-                        return "qualities-a";
-                    case "n":
-                        return "qualities-n";
-                    default:
-                        return "";
-                }
-            } }
+    public string GetQualitiesCssClass(string qualities)
+    {
+        switch (qualities?.ToLower())
+        {
+            case "m":
+                return "qualities-m";
+            case "a":
+                return "qualities-a";
+            case "n":
+                return "qualities-n";
+            default:
+                return "";
+        }
+    } }

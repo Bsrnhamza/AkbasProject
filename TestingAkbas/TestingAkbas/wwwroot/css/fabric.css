@@ -15,6 +15,7 @@ body {
     top: 6px; /* Üstten 50px */
     right: 60px; /* Sağdan 20px */
 }
+
 .btn i {
     font-size: 22px; /* İkonun boyutunu 24px olarak ayarlar */
 }
@@ -219,11 +220,18 @@ body {
         background-color: rgba(0, 0, 0, 0.1); /* Hover efekti */
     }
 
-/* Filtre Butonları Konteyneri */
 .filter-btn-container {
-    display: flex; /* Flexbox düzeni */
-    gap: 1rem; /* Butonlar arası boşluk */
-    position: absolute; /* Mutlak konum */
-    top: 30px; /* Üstten mesafe */
-    right: 100px; /* Sağdan mesafe */
+    position: relative;
+    margin-top: 10px; /* Üstten boşluk */
+    height: 10px; /* Butonların hizalanması için yeterli yükseklik */
 }
+
+    .filter-btn-container .btn-submit {
+        position: absolute;
+        right: 100px; /* Sağdan 100px uzaklıkta */
+    }
+
+    .filter-btn-container .btn-reset {
+        position: absolute;
+        right: 30px; /* Sağdan 30px uzaklıkta */
+    }
