@@ -10,6 +10,16 @@ body {
     padding: 15px; /* Konteyner içindeki boşluk */
 }
 
+.btn-custom {
+    position: absolute;
+    top: 6px; /* Üstten 50px */
+    right: 60px; /* Sağdan 20px */
+}
+.btn i {
+    font-size: 22px; /* İkonun boyutunu 24px olarak ayarlar */
+}
+
+
 /* Off-canvas Menüsü Stilleri */
 .offcanvas {
     height: 100%; /* Tam yükseklik */

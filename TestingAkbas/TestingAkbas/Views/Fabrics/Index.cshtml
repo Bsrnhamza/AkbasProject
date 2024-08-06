@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<TestingAkbas.Models.Fabric>
-@{
-    ViewData["Title"] = "";
-    Layout = "_FabricsLayout";
-}
+@{ ViewData["Title"] = "";
+                Layout = "_FabricsLayout"; }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/custom.css" />
@@ -70,39 +68,38 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr data-fabric-code="@item.FabricCode" data-quality-name="@item.QualityName" data-quality-group="@item.QualityGroup">
-                <td class="@GetQualityClassCssClass(item.QualityClass)">
-                    @Html.DisplayFor(modelItem => item.QualityClass)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.FabricCode)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.Qualities)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.QualityName)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.QualityGroup)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.Width)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.Weight)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.RawFabricPrice)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.DomesticPrice)
-                </td>
-                <td class="@GetQualitiesCssClass(item.Qualities)">
-                    @Html.DisplayFor(modelItem => item.ExportPrice)
-                </td>
-            </tr>
-        }
+<tr data-fabric-code="@item.FabricCode" data-quality-name="@item.QualityName" data-quality-group="@item.QualityGroup">
+    <td class="@GetQualityClassCssClass(item.QualityClass)">
+        @Html.DisplayFor(modelItem => item.QualityClass)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.FabricCode)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.Qualities)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.QualityName)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.QualityGroup)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.Width)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.Weight)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.RawFabricPrice)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.DomesticPrice)
+    </td>
+    <td class="@GetQualitiesCssClass(item.Qualities)">
+        @Html.DisplayFor(modelItem => item.ExportPrice)
+    </td>
+</tr>}
     </tbody>
 </table>
 
@@ -116,7 +113,7 @@
             var maxWidth = parseFloat($('#maxWidth').val()) || Infinity;
             var minWeight = parseFloat($('#minWeight').val()) || -Infinity;
             var maxWeight = parseFloat($('#maxWeight').val()) || Infinity;
-            ADFGDFHADFHB
+
             $('#fabricTable tbody tr').each(function () {
                 var row = $(this);
                 var rowFabricCode = row.find('td').eq(1).text().toLowerCase();
@@ -157,52 +154,51 @@
             exportVisibleDataToExcel();
         });
     });
+
 </script>
 
-@functions {
-    public string GetQualityClassCssClass(string qualityClass)
-    {
-        switch (qualityClass?.ToLower())
-        {
-            case "viscose":
-                return "quality-class-viscose";
-            case "rayon":
-            case "rynsignart":
-                return "quality-class-rayon";
-            case "cotton":
-                return "quality-class-cotton";
-            case "nylon":
-                return "quality-class-nylon";
-            case "polyester":
-            case "pesdouble":
-                return "quality-class-polyester";
-            case "tencel":
-            case "modal":
-                return "quality-class-tencel";
-            case "linen":
-                return "quality-class-linen";
-            case "jacquard":
-                return "quality-class-jacquard";
-            case "mix":
-            case "yarndyed":
-                return "quality-class-mix";
-            default:
-                return "";
-        }
-    }
+@functions { public string GetQualityClassCssClass(string qualityClass)
+            {
+                switch (qualityClass?.ToLower())
+                {
+                    case "viscose":
+                        return "quality-class-viscose";
+                    case "rayon":
+                    case "rynsignart":
+                        return "quality-class-rayon";
+                    case "cotton":
+                        return "quality-class-cotton";
+                    case "nylon":
+                        return "quality-class-nylon";
+                    case "polyester":
+                    case "pesdouble":
+                        return "quality-class-polyester";
+                    case "tencel":
+                    case "modal":
+                        return "quality-class-tencel";
+                    case "linen":
+                        return "quality-class-linen";
+                    case "jacquard":
+                        return "quality-class-jacquard";
+                    case "mix":
+                    case "yarndyed":
+                        return "quality-class-mix";
+                    default:
+                        return "";
+                }
+            }
 
-    public string GetQualitiesCssClass(string qualities)
-    {
-        switch (qualities?.ToLower())
-        {
-            case "m":
-                return "qualities-m";
-            case "a":
-                return "qualities-a";
-            case "n":
-                return "qualities-n";
-            default:
-                return "";
-        }
-    }
-}
+            public string GetQualitiesCssClass(string qualities)
+            {
+                switch (qualities?.ToLower())
+                {
+                    case "m":
+                        return "qualities-m";
+                    case "a":
+                        return "qualities-a";
+                    case "n":
+                        return "qualities-n";
+                    default:
+                        return "";
+                }
+            } }

@@ -1,174 +1,97 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .main-content {
-            padding: 20px;
-            margin-top: 60px; /* Navbar yüksekliğine göre içerik alanını kaydırın */
-        }
-
         .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 50px; /* Navbar yüksekliği */
-            background-color: rgb(248, 249, 250); /* Saydam arka plan */
-            border-bottom: 1px solid #dee2e6;
-            display: flex;
-            justify-content: center; /* Butonları ortada hizalama */
-            align-items: center; /* Butonları yatayda ortalama */
-            z-index: 1050;
-        }
-
-        .button-container {
-            display: flex;
-            gap: 80px; /* Butonlar arasındaki boşluk */
-        }
-
-        .navbar button {
-            width: 40px; /* Buton genişliği */
-            height: 40px; /* Buton yüksekliği */
-            text-align: center;
-            line-height: 40px; /* Metnin dikey ortalanması */
-            border: 2px solid #fff; /* Beyaz renkte sınır */
-            background-color: #fff; /* Beyaz arka plan */
-            color: #000; /* Metin rengi siyah */
-            border-radius: 4px; /* Kare butonlar */
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s; /* Renk geçişi */
-        }
-
-            .navbar button:hover {
-                background-color: #000; /* Hover efekti arka plan rengi siyah */
-                color: #fff; /* Hover efekti metin rengi beyaz */
-            }
-
-        .offcanvas {
-            position: fixed;
-            top: 50px; /* Navbarın hemen altı */
-            left: 0;
-            width: 100%;
-            height: 200px; /* Offcanvas yüksekliği */
-            background-color: rgba(255, 255, 255, 0.5); /* Saydam arka plan */
-            border-bottom: 1px solid #dee2e6;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transform: translateY(-100%); /* Başlangıçta gizli */
-            opacity: 0; /* Başlangıçta şeffaf */
-            transition: transform 0.5s ease, opacity 0.5s ease; /* Geçiş efekti */
-            pointer-events: none; /* Tıklanabilirliği kapalı */
-        }
-
-            .offcanvas.show {
-                transform: translateY(0); /* Menü görünür yap */
-                opacity: 1; /* Menü görünür yap */
-                pointer-events: auto; /* Tıklanabilirliği aç */
-            }
-
-
-            .offcanvas.show {
-                transform: translateY(0); /* Menü görünür yap */
-                opacity: 1; /* Menü görünür yap */
-                display: block; /* Menü görünür yap */
-            }
-
-        .offcanvas-header {
-            padding: 10px;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .offcanvas-body {
-            padding: 20px;
-        }
-
-        .offcanvas-close {
-            background: none;
-            border: none;
-            font-size: 1.25rem;
-            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.1); /* Beyaz arka plan rengi ve %50 saydamlık */
         }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="button-container">
-            <button type="button" onclick="toggleOffcanvas('offcanvas1')"><i class="fas fa-user"></i></button> <!-- Kafa iconu -->
-            <button type="button" onclick="toggleOffcanvas('offcanvas2')"><i class="fas fa-industry"></i></button> <!-- Fabrika iconu -->
-            <button type="button" onclick="toggleOffcanvas('offcanvas3')"><i class="fas fa-cog"></i></button> <!-- Ayarlar iconu -->
-            <button type="button" onclick="toggleOffcanvas('offcanvas4')"><i class="fas fa-question"></i></button> <!-- Soru işareti iconu -->
-            <button type="button" onclick="toggleOffcanvas('offcanvas5')"><i class="fas fa-sign-out-alt"></i></button> <!-- Çıkış iconu -->
-        </div>
-    </div>
-    <div id="mainContent" class="main-content">
+    <header>
+        <nav class="navbar">
+            <div class="container d-flex justify-content-between align-items-center">
+                <a class="navbar-brand" href="#">
+                    <img src="~/img/akbasIcon.jpg" alt="Bootstrap" width="30" height="30">
+                </a>
+                <div class="d-flex flex-grow-1 justify-content-center">
+                    <div class="d-flex mx-auto">
+                        <div class="dropdown me-2">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                İplik
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Maliyet Analizi</a></li>
+                                <li><a class="dropdown-item" href="#">Poy Stok Analizi</a></li>
+                                <li><a class="dropdown-item" href="#">İplik Stok Analizi</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown me-2">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dokuma Örme
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                <li><a class="dropdown-item" href="#">Dokuma Örme Proforma</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown me-2">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                                Boyahane
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                                <li><a class="dropdown-item" href="#">Boyahane Proforma</a></li>
+                                <li><a class="dropdown-item" href="@Url.Action("Index", "Fabrics")">Boyahane Genel Fiyat Listesi</a></li>
+
+                                <li><a class="dropdown-item" href="#">Boyahane Stok Analizi</a></li>
+                                <li><a class="dropdown-item" href="#">Boyahane İthal Kumaşlar</a></li>
+                                <li><a class="dropdown-item" href="#">Üretim Raporu</a></li>
+                                <li><a class="dropdown-item" href="#">Baskı Üretim Raporu</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown me-2">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">
+                                Konfeksiyon
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton4">
+                                <li><a class="dropdown-item" href="#">Konfeksiyon Kumaş Fiyat Listesi</a></li>
+                                <li><a class="dropdown-item" href="#">Geç Gelenler listesi</a></li>
+                            </ul>
+                        </div>
+                        <div class="dropdown me-2">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton5" data-bs-toggle="dropdown" aria-expanded="false">
+                                Diğer
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
+                                <li><a class="dropdown-item" href="#">Satın Alma Fiyat Listesi</a></li>
+                                <li><a class="dropdown-item" href="#">Sipariş Özet Raporu</a></li>
+                                <li><a class="dropdown-item" href="#">Satış Analizi</a></li>
+                                <li><a class="dropdown-item" href="#">Sipariş Analizi</a></li>
+                                <li><a class="dropdown-item" href="#">Santral Görüşme Takip</a></li>
+                                <li><a class="dropdown-item" href="#">Su Sayaç Takibi</a></li>
+                                <li><a class="dropdown-item" href="#">Bilgi Sistemleri Destek</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <form method="post" asp-controller="Account" asp-action="Logout">
+                    <button type="submit" class="btn btn-danger ms-2">Çıkış</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <main>
         @RenderBody()
-    </div>
+    </main>
 
-    <!-- Offcanvas Menüler -->
-    <div class="offcanvas" id="offcanvas1">
-        <div class="offcanvas-header">
-            <button type="button" class="offcanvas-close" onclick="toggleOffcanvas('offcanvas1')">&times;</button>
-        </div>
-        <div class="offcanvas-body">
-        </div>
-    </div>
+    <footer>
+        <!-- Varsayılan footer içeriği -->
+    </footer>
 
-    <div class="offcanvas" id="offcanvas2">
-        <div class="offcanvas-header">
-            <button type="button" class="offcanvas-close" onclick="toggleOffcanvas('offcanvas2')">&times;</button>
-        </div>
-        <div class="offcanvas-body">
-        </div>
-    </div>
-
-    <div class="offcanvas" id="offcanvas3">
-        <div class="offcanvas-header">
-            <button type="button" class="offcanvas-close" onclick="toggleOffcanvas('offcanvas3')">&times;</button>
-        </div>
-        <div class="offcanvas-body">
-        </div>
-    </div>
-
-    <div class="offcanvas" id="offcanvas4">
-        <div class="offcanvas-header">
-            <button type="button" class="offcanvas-close" onclick="toggleOffcanvas('offcanvas4')">&times;</button>
-        </div>
-        <div class="offcanvas-body">
-        </div>
-    </div>
-
-    <div class="offcanvas" id="offcanvas5">
-        <div class="offcanvas-header">
-            <button type="button" class="offcanvas-close" onclick="toggleOffcanvas('offcanvas5')">&times;</button>
-        </div>
-        <div class="offcanvas-body">
-        </div>
-    </div>
-
-    <script>
-        function toggleOffcanvas(id) {
-            const offcanvas = document.getElementById(id);
-            const allOffcanvases = document.querySelectorAll('.offcanvas');
-            allOffcanvases.forEach(el => {
-                if (el !== offcanvas) {
-                    el.classList.remove('show');
-                }
-            });
-            if (offcanvas.classList.contains('show')) {
-                offcanvas.classList.remove('show');
-            } else {
-                offcanvas.classList.add('show');
-            }
-        }
-
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
