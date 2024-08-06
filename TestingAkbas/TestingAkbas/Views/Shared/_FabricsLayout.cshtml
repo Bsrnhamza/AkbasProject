@@ -19,9 +19,17 @@
                     <img src="~/img/akbasIcon.jpg" alt="Icon" style="width: 28px; height: 28px; margin-right: 8px;">
                     Akbaş Holding
                 </a>
-                <a class="btn btn-white btn-custom" href="@Url.Action("Index", "Home")">
-                    <i class="bi bi-house-door"></i>
-                </a>
+                <div class="ml-auto d-flex align-items-center">
+                    <a class="btn btn-white btn-custom" href="@Url.Action("Rules", "Fabrics")" onclick="openInNewWindow('@Url.Action("Rules", "Fabrics")'); return false;" style="margin-right: 66px;">
+                        <i class="bi bi-question-circle"></i>
+                    </a>
+                    <a class="btn btn-white btn-custom" href="@Url.Action("RulesTwo", "Fabrics")" onclick="openInNewWindow('@Url.Action("RulesTwo", "Fabrics")'); return false;" style="margin-right: 33px;">
+                        <i class="bi bi-question-circle"></i>
+                    </a>
+                    <a class="btn btn-white btn-custom" href="@Url.Action("Index", "Home")">
+                        <i class="bi bi-house-door"></i>
+                    </a>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -291,6 +299,9 @@
             });
             document.getElementById('filterForm').addEventListener('reset', resetFilters);
         });
+        function openInNewWindow(url) {
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
     </script>
 
 

@@ -221,17 +221,21 @@ body {
     }
 
 .filter-btn-container {
-    position: relative;
-    margin-top: 10px; /* Üstten boşluk */
-    height: 10px; /* Butonların hizalanması için yeterli yükseklik */
+    position: absolute; /* Mutlak konumlandırma */
+    top: 30px; /* Üstten 30px mesafede (önceki 20px'den biraz daha aşağıda) */
+    right: 40px; /* Sağdan 40px mesafede */
+    width: calc(100% - 80px); /* Sağ ve sol kenardan 40px boşluk bırakır */
+    z-index: 100; /* Butonları diğer içeriklerin üstüne getirir */
+    display: flex; /* Flexbox düzeni */
+    justify-content: flex-end; /* Butonları sağa hizalar */
 }
 
-    .filter-btn-container .btn-submit {
-        position: absolute;
-        right: 100px; /* Sağdan 100px uzaklıkta */
+    .filter-btn-container .btn-submit,
+    .filter-btn-container .btn-reset {
+        position: relative; /* Konumlandırmayı kontrol eder */
+        display: inline-block; /* Yan yana dizilmesini sağlar */
     }
 
-    .filter-btn-container .btn-reset {
-        position: absolute;
-        right: 30px; /* Sağdan 30px uzaklıkta */
+    .filter-btn-container .btn-submit {
+        margin-right: 10px; /* Sağda boşluk bırakır */
     }

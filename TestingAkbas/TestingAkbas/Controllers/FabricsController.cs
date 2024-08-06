@@ -224,5 +224,13 @@ namespace TestingAkbas.Controllers
         {
             return _context.Fabrics.Any(e => e.Id == id);
         }
+        public IActionResult Rules()
+        {
+            return View();
+        }
+        public IActionResult RulesTwo()
+        {
+            return View();
+        }
     }
 }
