@@ -458,3 +458,4 @@ C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\bin\Debug\net5.
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Debug\net5.0\Razor\Views\Fabrics\Rules.cshtml.g.cs
 C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Debug\net5.0\Razor\Views\Fabrics\RulesTwo.cshtml.g.cs
+C:\Users\hp\source\repos\TestingAkbas2\TestingAkbas\TestingAkbas\obj\Debug\net5.0\Razor\Views\ErrorPage\Error1.cshtml.g.cs
